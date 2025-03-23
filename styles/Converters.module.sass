@@ -33,6 +33,9 @@ section.section
     &:last-of-type
       padding-bottom: 0
 
+    &.section-anthor
+      align-items: flex-end
+
     &:not(.section-full)
       max-width: none
       width: 50%
@@ -325,3 +328,99 @@ section.section
         dd
           @include ds.fw(700)
           font-size: ds.rem(20)
+
+  .gffd
+    display: flex
+    flex-direction: column
+    align-items: center
+    max-width: ds.rem(384)
+    width: 100%
+    height: ds.rem(239)
+
+    @include ds.mq(minLarge)
+      flex-grow: 1
+      justify-content: space-between
+
+    @include ds.mq(maxMedium)
+      gap: ds.rem(12)
+
+    .image
+      width: ds.rem(107)
+      height: ds.rem(107)
+
+      svg
+        width: 100%
+        height: 100%
+
+        path
+          fill: ds.$hex-dark
+
+          body[data-theme='dark'] &
+            fill: ds.$hex-white
+
+    .text
+      width: ds.rem(260)
+      height: ds.rem(45)
+
+      svg
+        width: 100%
+        height: 100%
+
+        path
+          fill: ds.$hex-accent-light
+
+          body[data-theme='dark'] &
+            fill: ds.$hex-accent-dark
+
+    a
+      transition: background 0.3s ease-in-out, transform 0.2s
+      position: relative
+      overflow: hidden
+      display: flex
+      justify-content: center
+      align-items: center
+      background-color: ds.$hex-white
+      border: ds.rem(2) solid
+      border-radius: ds.rem(3)
+      width: 100%
+      height: ds.rem(52)
+      font-size: ds.rem(16)
+      @include ds.fw(500)
+      color: ds.$hex-accent-light
+
+      &::before
+        content: ''
+        position: absolute
+        top: 50%
+        left: 50%
+        width: 300%
+        height: 300%
+        background: radial-gradient(circle, ds.$hex-accent-light 0%, ds.$hex-white 100%)
+        transition: transform 0.3s ease-in-out
+        transform: translate(-50%, -50%) scale(0)
+        z-index: 0
+
+        body[data-theme='dark'] &
+          background: radial-gradient(circle, ds.$hex-accent-dark 0%, ds.$hex-dark 100%)
+
+      &:hover,
+      &:focus
+        border-color: ds.$hex-accent-light
+        color: ds.$hex-white
+
+        body[data-theme='dark'] &
+          border-color: ds.$hex-accent-dark
+          color: ds.$hex-black
+
+      &:hover::before,
+      &:focus::before
+        transform: translate(-50%, -50%) scale(1)
+
+      span
+        position: relative
+        z-index: 1
+        font-size: ds.rem(16)
+
+      body[data-theme='dark'] &
+        background-color: ds.$hex-dark
+        color: ds.$hex-accent-dark
