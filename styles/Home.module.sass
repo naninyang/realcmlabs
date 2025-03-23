@@ -1,0 +1,421 @@
+.main
+  flex-direction: column
+  padding-bottom: 0
+
+  @include ds.mq(maxExtraSmall)
+    padding-top: ds.rem(23)
+
+  .container
+    display: flex
+    flex-direction: column
+    gap: ds.rem(12)
+
+    @include ds.mq(maxExtraSmall)
+      padding-right: ds.rem(12)
+      padding-left: ds.rem(12)
+
+  .headline
+    display: flex
+    flex-direction: column
+    gap: ds.rem(23)
+
+    .more
+      display: flex
+      flex-direction: column
+      gap: ds.rem(12)
+
+      p
+        display: flex
+        gap: ds.rem(7)
+        border: ds.rem(2) solid ds.$hex-accent-light
+        border-radius: ds.rem(3)
+        padding: ds.rem(12)
+        font-size: ds.rem(14)
+        font-weight: 500
+        color: ds.$hex-dark
+
+        body[data-theme='dark'] &
+          border-color: ds.$hex-accent-dark
+          color: ds.$hex-light
+
+        svg
+          margin-top: ds.rem(2)
+          width: ds.rem(14)
+          height: ds.rem(14)
+
+          path
+            fill: ds.$hex-accent-light
+
+            body[data-theme='dark'] &
+              fill: ds.$hex-accent-dark
+
+        span
+          @include ds.col
+          line-height: 1.14285714
+
+        a
+          color: ds.$hex-accent-light
+          text-decoration: underline
+
+          body[data-theme='dark'] &
+            color: ds.$hex-accent-dark
+
+  h1
+    font-size: ds.rem(20)
+    @include ds.fw(500)
+
+  .notice
+    display: flex
+    flex-direction: column
+    gap: ds.rem(12)
+
+    p
+      display: flex
+      gap: ds.rem(7)
+      border: ds.rem(2) solid ds.$hex-danger
+      border-radius: ds.rem(3)
+      padding: ds.rem(12)
+      font-size: ds.rem(14)
+      font-weight: 500
+      color: ds.$hex-danger
+
+      svg
+        margin-top: ds.rem(2)
+        width: ds.rem(14)
+        height: ds.rem(14)
+
+        path
+          fill: ds.$hex-danger
+
+      span
+        @include ds.col
+        line-height: 1.14285714
+
+  .result
+    background-color: rgba(ds.$hex-gray-dark, .2)
+    margin-top: ds.rem(37)
+    border-radius: ds.rem(17) ds.rem(17) 0 0
+    padding: ds.rem(53) 0
+
+    body[data-theme='dark'] &
+      background-color: rgba(ds.$hex-gray-light, .2)
+
+    h2
+      font-size: ds.rem(18)
+      @include ds.fw(500)
+
+    dl
+      display: flex
+      flex-direction: column
+
+      div
+        display: flex
+        align-items: center
+        gap: ds.rem(7)
+
+        dt, dd
+          font-size: ds.rem(14)
+
+        dt
+          opacity: .5
+
+        dd
+          @include ds.fw(700)
+
+  .outter
+    display: flex
+    justify-content: center
+    overflow: hidden
+    position: relative
+    padding: ds.rem(27) 0 ds.rem(93)
+
+  .realbox, .realline
+    background-color: rgba(ds.$hex-dark, .2)
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    max-height: 100vh
+
+    span
+      @include ds.fw(900)
+      font-size: ds.rem(23)
+      user-select: none
+
+    .warning
+      display: flex
+      flex-direction: column
+      align-items: center
+      color: ds.$hex-danger
+      font-weight: 700
+
+      dl
+        color: ds.$hex-dark
+        display: flex
+        flex-direction: column
+        gap: ds.rem(3)
+
+        div
+          display: flex
+          align-items: center
+          gap: ds.rem(12)
+
+          dt
+            font-weight: 500
+            opacity: .7
+
+          dd
+            color: ds.$hex-black
+
+  .realline
+    border-radius: ds.rem(10)
+
+    &.horizontal
+      height: ds.rem(10)
+
+      &.overflow
+        background: linear-gradient(90deg, rgba(ds.$hex-dark, 0.2) 0%, rgba(ds.$hex-dark, 0.2) 70%, rgba(ds.$hex-dark, 0) 100%)
+
+        body[data-theme='dark'] &
+          background: linear-gradient(90deg, rgba(ds.$hex-light, 0.2) 0%, rgba(ds.$hex-light, 0.2) 70%, rgba(ds.$hex-light, 0) 100%)
+
+      .guide
+        top: ds.rem(43)
+
+      .warning
+        bottom: 0
+
+    &.vertical
+      width: ds.rem(10)
+
+      &.overflow
+        background: linear-gradient(180deg, rgba(ds.$hex-dark, 0.2) 0%, rgba(ds.$hex-dark, 0.2) 70%, rgba(ds.$hex-dark, 0) 100%)
+
+        body[data-theme='dark'] &
+          background: linear-gradient(180deg, rgba(ds.$hex-light, 0.2) 0%, rgba(ds.$hex-light, 0.2) 70%, rgba(ds.$hex-light, 0) 100%)
+
+      .guide
+        top: 0
+        left: calc(50% + ds.rem(23))
+        display: flex
+        align-items: center
+        padding: ds.rem(27) 0 ds.rem(93)
+        height: 100%
+
+      .warning
+        bottom: 0
+
+        p
+          text-align: center
+
+    .guide
+      position: absolute
+
+      span
+        white-space: nowrap
+
+    .warning
+      position: absolute
+      left: 0
+      padding: 0 ds.rem(12)
+      width: 100%
+
+  .realbox
+    gap: ds.rem(27)
+
+    body[data-theme='dark'] &
+      background-color: rgba(ds.$hex-light, .2)
+
+    span
+      white-space: nowrap
+
+  .module
+    border: ds.rem(2) solid rgba(ds.$hex-gray-dark, .2)
+    border-radius: ds.rem(17)
+    padding: ds.rem(12)
+
+    body[data-theme='dark'] &
+      border: ds.rem(2) solid rgba(ds.$hex-gray-light, .2)
+
+    p
+      display: flex
+      gap: ds.rem(3)
+      font-size: ds.rem(14)
+      font-weight: 500
+
+      svg
+        margin-top: ds.rem(2)
+        width: ds.rem(14)
+        height: ds.rem(14)
+
+      span
+        @include ds.col
+        line-height: 1.14285714
+
+      strong
+        color: ds.$hex-accent-light
+
+        body[data-theme='dark'] &
+          color: ds.$hex-accent-dark
+
+    .form
+      display: flex
+      flex-direction: column
+
+      .radio
+        display: flex
+        gap: ds.rem(12)
+
+      .checkbox
+        display: flex
+        align-items: center
+        gap: ds.rem(1)
+        padding-top: ds.rem(23)
+
+        > div
+          display: flex
+          justify-content: center
+          align-items: center
+          width: ds.rem(24)
+          height: ds.rem(24)
+
+          &.checked
+            svg
+              path
+                fill: ds.$hex-accent-light
+
+                body[data-theme='dark'] &
+                  fill: ds.$hex-accent-dark
+
+          &.unchecked
+            svg
+              path
+                fill: rgba(ds.$hex-dark, .7)
+
+                body[data-theme='dark'] &
+                  fill: rgba(ds.$hex-light, .7)
+
+        input
+          @include ds.screen-reader-only
+
+        label
+          display: inline-block
+          height: auto
+          font-size: ds.rem(16)
+          font-weight: 700
+          white-space: nowrap
+
+      .groups
+        display: flex
+        gap: ds.rem(12)
+
+        @include ds.mq(maxSmall)
+          flex-direction: column
+
+      .group
+        display: flex
+        gap: ds.rem(5)
+
+        @include ds.mq(minLarge)
+          width: 50%
+
+        label
+          padding-right: ds.rem(12)
+          color: ds.$hex-gray-dark
+
+        & + p
+          margin-top: ds.rem(7)
+
+      svg
+        width: ds.rem(14)
+        height: ds.rem(14)
+
+      p, label, input, select, span
+        font-size: ds.rem(14)
+
+      label, .group + span
+        display: flex
+        align-items: center
+        border-bottom: ds.rem(2) solid transparent
+
+      select
+        cursor: pointer
+
+      select, input[type='number'], input[type='text']
+        appearance: none
+
+      select, input[type='number'], input[type='text'], label, span
+        height: ds.rem(37)
+        line-height: 1
+
+      select, input[type='number'], input[type='text']
+        appearance: none
+        background-color: transparent
+        border: 0
+        border-bottom: ds.rem(2) solid ds.$hex-gray-light
+        border-radius: 0
+        padding: 0
+        text-align: right
+
+        &:focus, &:focus-visible
+          outline: 0
+          border-bottom: ds.rem(5) solid ds.$hex-accent-light
+          color: ds.$hex-accent-light
+
+          body[data-theme='dark'] &
+            bottom-bottom-color: ds.$hex-accent-dark
+            color: ds.$hex-accent-dark
+
+      .submit
+        padding-top: ds.rem(12)
+        width: 100%
+
+        button
+          transition: background 0.3s ease-in-out, transform 0.2s
+          position: relative
+          overflow: hidden
+          background-color: ds.$hex-white
+          border: ds.rem(2) solid
+          border-radius: ds.rem(3)
+          width: 100%
+          height: ds.rem(52)
+          font-size: ds.rem(16)
+          @include ds.fw(500)
+          color: ds.$hex-accent-light
+
+          &::before
+            content: ''
+            position: absolute
+            top: 50%
+            left: 50%
+            width: 300%
+            height: 300%
+            background: radial-gradient(circle, ds.$hex-accent-light 0%, ds.$hex-white 100%)
+            transition: transform 0.3s ease-in-out
+            transform: translate(-50%, -50%) scale(0)
+            z-index: 0
+
+            body[data-theme='dark'] &
+              background: radial-gradient(circle, ds.$hex-accent-dark 0%, ds.$hex-dark 100%)
+
+          &:hover,
+          &:focus
+            border-color: ds.$hex-accent-light
+            color: ds.$hex-white
+
+            body[data-theme='dark'] &
+              border-color: ds.$hex-accent-dark
+              color: ds.$hex-black
+
+          &:hover::before,
+          &:focus::before
+            transform: translate(-50%, -50%) scale(1)
+
+          span
+            position: relative
+            z-index: 1
+            font-size: ds.rem(16)
+
+          body[data-theme='dark'] &
+            background-color: ds.$hex-dark
+            color: ds.$hex-accent-dark
