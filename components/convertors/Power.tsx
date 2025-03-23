@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Checked, Unchecked } from '../Svgs';
 import styles from '@/styles/Converters.module.sass';
 
-const PowerCalculator = () => {
+export default function PowerCalculator() {
   const [voltage, setVoltage] = useState<string>('');
   const [current, setCurrent] = useState<string>('');
   const [power, setPower] = useState<string>('');
@@ -21,18 +21,11 @@ const PowerCalculator = () => {
   };
 
   const handleCheckboxChange = (type: 'V' | 'A' | 'W') => {
-    const checkedCount = getCheckedCount();
-
     const isChecking = (() => {
       if (type === 'V') return !voltageChecked;
       if (type === 'A') return !currentChecked;
       if (type === 'W') return !powerChecked;
     })();
-
-    if (isChecking && checkedCount >= 2) {
-      alert('3개의 항목 중 2개의 항목만 선택하실 수 있습니다.');
-      return;
-    }
 
     if (type === 'V') {
       setVoltageChecked(!voltageChecked);
@@ -44,6 +37,10 @@ const PowerCalculator = () => {
       setPowerChecked(!powerChecked);
       if (powerChecked) setPower('');
     }
+  };
+
+  const handleDisabled = () => {
+    alert('3개의 항목 중 2개의 항목만 선택하실 수 있습니다.');
   };
 
   const handleCalculation = () => {
@@ -94,6 +91,11 @@ const PowerCalculator = () => {
                     {voltageChecked ? <Checked /> : <Unchecked />}
                   </div>
                   <label htmlFor="voltage">전압 (V)</label>
+                  {disableVoltage && (
+                    <button type="button" onClick={handleDisabled}>
+                      <span>경고 보기</span>
+                    </button>
+                  )}
                 </div>
                 <div className={styles.value}>
                   <input
@@ -118,6 +120,11 @@ const PowerCalculator = () => {
                     {currentChecked ? <Checked /> : <Unchecked />}
                   </div>
                   <label htmlFor="current">전류 (A)</label>
+                  {disableCurrent && (
+                    <button type="button" onClick={handleDisabled}>
+                      <span>경고 보기</span>
+                    </button>
+                  )}
                 </div>
                 <div className={styles.value}>
                   <input
@@ -142,6 +149,11 @@ const PowerCalculator = () => {
                     {powerChecked ? <Checked /> : <Unchecked />}
                   </div>
                   <label htmlFor="power">전력 (W)</label>
+                  {disablePower && (
+                    <button type="button" onClick={handleDisabled}>
+                      <span>경고 보기</span>
+                    </button>
+                  )}
                 </div>
                 <div className={styles.value}>
                   <input
@@ -189,6 +201,4 @@ const PowerCalculator = () => {
       </div>
     </section>
   );
-};
-
-export default PowerCalculator;
+}
