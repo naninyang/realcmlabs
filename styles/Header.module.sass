@@ -1,0 +1,52 @@
+header.header
+  position: relative
+  z-index: 1
+  background-color: ds.$hex-white
+  border-bottom: 1px solid ds.$hex-gray-dark
+
+  body[data-theme='dark'] &
+    background-color: ds.$hex-black
+    border-bottom: 1px solid ds.$hex-gray-light
+
+  .container
+    display: flex
+    justify-content: space-between
+    align-items: center
+    padding-top: ds.rem(23)
+    padding-bottom: ds.rem(23)
+
+    svg
+      & + span
+        @include ds.screen-reader-only
+
+    button
+      transition: all .4s cubic-bezier(.4,0,.2,1)
+      background-color: rgba(ds.$hex-gray-light, .1)
+      display: flex
+      justify-content: center
+      align-items: center
+      border-radius: 100%
+      width: ds.rem(32)
+      height: ds.rem(32)
+
+      body[data-theme='dark'] &
+        background-color: rgba(ds.$hex-gray-dark, .2)
+
+      &:hover, &:focus
+        background-color: rgba(ds.$hex-dark, 1)
+
+        svg
+          path
+            fill: ds.$hex-accent-dark
+
+        body[data-theme='dark'] &
+          background-color: rgba(ds.$hex-light, 1)
+
+          svg
+            path
+              fill: ds.$hex-accent-light
+
+      svg
+        display: inline-block
+        width: ds.rem(20)
+        height: ds.rem(20)
