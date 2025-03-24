@@ -15,8 +15,70 @@ header.header
     padding-top: ds.rem(23)
     padding-bottom: ds.rem(23)
 
+    .group
+      display: flex
+      align-items: center
+      gap: ds.rem(23)
+
+      @include ds.mq(minSmall)
+        align-items: flex-end
+
+      h1, h1 a
+        display: flex
+        height: ds.rem(32)
+
+      ol
+        display: flex
+
+        @include ds.mq(minSmall)
+          align-items: center
+
+        @include ds.mq(maxExtraSmall)
+          flex-direction: column-reverse
+
+        li
+          @include ds.mq(minSmall)
+            &:first-of-type
+              display: flex
+              align-items: center
+
+              &::after
+                content: '|'
+                @include ds.fw(500)
+                font-size: ds.rem(12)
+                color: rgba(ds.$hex-gray-light, .5)
+
+                body[data-theme='dark'] &
+                  color: rgba(ds.$hex-gray-dark, .5)
+
+          a
+            display: flex
+            align-items: center
+            gap: ds.rem(3)
+            padding: ds.rem(3) 0
+            @include ds.fw(500)
+            font-size: ds.rem(14)
+            color: ds.$hex-accent-light
+
+            @include ds.mq(minSmall)
+              padding: 0 ds.rem(7)
+
+            svg
+              width: ds.rem(14)
+              height: ds.rem(14)
+
+              path
+                fill: ds.$hex-accent-light
+
+            body[data-theme='dark'] &
+              color: ds.$hex-accent-dark
+
+              svg
+                path
+                  fill: ds.$hex-accent-dark
+
     svg
-      & + span
+      & + span:not(.link)
         @include ds.screen-reader-only
 
     button
