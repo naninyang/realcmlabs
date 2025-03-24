@@ -17,6 +17,35 @@
     @include ds.mq(maxMedium)
       flex-direction: column
 
+    .backlink
+      padding-bottom: ds.rem(23)
+      width: 100%
+
+      a
+        display: inline-flex
+        align-items: center
+        gap: ds.rem(7)
+
+        svg
+          width: ds.rem(20)
+          height: ds.rem(20)
+
+          path
+            fill: ds.$hex-dark
+
+        span
+          @include ds.fw(700)
+          font-size: ds.rem(20)
+          color: ds.$hex-dark
+
+        body[data-theme='dark'] &
+          svg
+            path
+              fill: ds.$hex-light
+
+          span
+            color: ds.$hex-light
+
 section.section
   display: flex
   flex-direction: column
