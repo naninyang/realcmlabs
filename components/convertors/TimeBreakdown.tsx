@@ -88,7 +88,7 @@ export default function TimeBreakdown() {
         const unitSeconds = unitInSeconds[unit];
         const count = Math.floor(remaining / unitSeconds);
         if (count > 0) {
-          line.push(`${count}${unit}`);
+          line.push(`${count} ${unit}`);
           remaining %= unitSeconds;
         }
       }
@@ -107,7 +107,7 @@ export default function TimeBreakdown() {
     const lowerList = lowerUnits.map((unit) => {
       const converted = totalSeconds / unitInSeconds[unit];
       const rounded = Number.isInteger(converted) ? converted : converted.toFixed(2);
-      return `${rounded}${unit}`;
+      return `${rounded} ${unit}`;
     });
 
     setLowerResults(lowerList);
