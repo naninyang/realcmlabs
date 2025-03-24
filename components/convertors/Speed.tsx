@@ -70,6 +70,7 @@ export default function SpeedConverter() {
             <div className={styles.group}>
               <input
                 type="text"
+                maxLength={16}
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 placeholder="값 입력"
