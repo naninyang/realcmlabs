@@ -3,6 +3,9 @@
     background-color: ds.$hex-light
     padding-top: ds.rem(23)
 
+  @include ds.mq(minSmall)
+    padding-top: ds.rem(23)
+
   .container
     display: flex
 
@@ -20,6 +23,9 @@
     .backlink
       padding-bottom: ds.rem(23)
       width: 100%
+
+      @include ds.mq(maxExtraSmall)
+        padding-left: ds.rem(12)
 
       a
         display: inline-flex
