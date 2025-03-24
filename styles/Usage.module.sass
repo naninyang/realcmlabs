@@ -1,0 +1,74 @@
+.usage
+  padding: 0
+
+  .bg
+    position: fixed
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+
+    img
+      width: 100%
+      height: 100%
+      object-fit: cover
+
+  .container
+    position: relative
+    z-index: 1
+    display: flex
+    flex-direction: column
+    justify-content: center
+    gap: ds.rem(23)
+    padding-top: ds.rem(53)
+    padding-bottom: ds.rem(53)
+
+    .svg
+      display: flex
+      justify-content: center
+
+    svg
+      width: ds.rem(320)
+      height: auto
+
+    .notice
+      text-align: center
+
+      p:last-of-type
+        padding-top: ds.rem(23)
+
+        a
+          position: relative
+          top: ds.rem(-1)
+          @include ds.fw(700)
+          color: ds.$hex-accent-light
+
+          body[data-theme='dark'] &
+            color: ds.$hex-accent-dark
+
+          &:hover, &:focus
+            text-decoration: underline
+
+    .staff
+      padding-top: ds.rem(53)
+
+      dl
+        display: flex
+        flex-direction: column
+        align-items: center
+        gap: ds.rem(12)
+        width: 100%
+
+        div
+          display: flex
+          align-items: center
+          gap: ds.rem(12)
+
+          dt
+            text-align: right
+            opacity: .7
+            width: ds.rem(103)
+
+          dd
+            @include ds.fw(700)
+            width: ds.rem(180)
