@@ -187,9 +187,12 @@ export default function TimeBreakdown() {
             )}
           </div>
         )}
-        <p className={styles.announcement}>
-          * 날짜 계산기는 <Anchor href="https://timelab.dev1stud.io">여기</Anchor>를 이용해 주세요
-        </p>
+        <div className={styles.announcement}>
+          <p>* 1개월(1달)은 4주 및 30일 기준으로 계산됩니다.</p>
+          <p>
+            * 날짜 계산기는 <Anchor href="https://timelab.dev1stud.io">여기</Anchor>를 이용해 주세요.
+          </p>
+        </div>
       </div>
     </section>
   );
