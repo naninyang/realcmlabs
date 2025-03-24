@@ -6,6 +6,7 @@ import SpeedConverter from '@/components/convertors/Speed';
 import StorageConverter from '@/components/convertors/Storage';
 import Supported from '@/components/convertors/Supported';
 import TemperatureConverter from '@/components/convertors/Temperature';
+import TimeBreakdown from '@/components/convertors/TimeBreakdown';
 import VolumeConverter from '@/components/convertors/Volume';
 import styles from '@/styles/Converters.module.sass';
 
@@ -22,6 +23,7 @@ export default function Converters() {
         <StorageConverter />
         <Supported />
         <PowerCalculator />
+        <TimeBreakdown />
       </div>
     </main>
   );

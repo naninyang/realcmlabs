@@ -277,6 +277,21 @@ section.section
           background-color: ds.$hex-dark
           color: ds.$hex-accent-dark
 
+  .announcement
+    font-weight: 500
+    color: ds.$hex-accent-light
+
+    a
+      font-weight: 700
+      color: ds.$hex-black
+      text-decoration: underline
+
+    body[data-theme='dark'] &
+      color: ds.$hex-accent-dark
+
+      a
+        color: ds.$hex-white
+
   .result
     display: flex
     flex-direction: column
@@ -340,6 +355,42 @@ section.section
         dd
           @include ds.fw(700)
           font-size: ds.rem(20)
+
+    ul
+      @include ds.fw(700)
+      font-size: ds.rem(20)
+
+      li
+        display: flex
+        margin: ds.rem(5)
+
+        svg
+          width: ds.rem(22)
+          height: ds.rem(22)
+
+        span
+          @include ds.col
+
+    &._coffee
+      &._both
+        display: flex
+        flex-direction: column
+
+    &._latte
+      &:not(._both)
+        ul
+          display: flex
+          flex-wrap: wrap
+
+          li
+            width: 50%
+
+      &._both
+        display: flex
+        flex-direction: row
+
+        ul
+          @include ds.col
 
   .gffd
     display: flex
