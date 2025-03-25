@@ -21,12 +21,6 @@ export default function PowerCalculator() {
   };
 
   const handleCheckboxChange = (type: 'V' | 'A' | 'W') => {
-    const isChecking = (() => {
-      if (type === 'V') return !voltageChecked;
-      if (type === 'A') return !currentChecked;
-      if (type === 'W') return !powerChecked;
-    })();
-
     if (type === 'V') {
       setVoltageChecked(!voltageChecked);
       if (voltageChecked) setVoltage('');
