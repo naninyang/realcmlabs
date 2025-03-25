@@ -12,7 +12,7 @@ interface Props {
   pageOgType?: string;
 }
 
-export const originTitle = '날짜계산기 - 타임랩 realcmlabs';
+export const originTitle = '단위계산기 - 리얼센치랩스(리치랩) realcmlabs';
 
 const Seo = ({
   pageTitles,
@@ -28,7 +28,7 @@ const Seo = ({
   const pagePath = router.asPath;
   const domain = 'https://realcmlabs.dev1stud.io';
   const defaultTitle = `${originTitle}`;
-  const defaultDescription = '각종 날짜 계산기를 이용해 보셔요! :)';
+  const defaultDescription = '각종 단위 계산기를 이용해 보셔요! :)';
   const title = pageTitles || defaultTitle;
   const description = pageDescription || defaultDescription;
   const url = `${domain}${pagePath}`;

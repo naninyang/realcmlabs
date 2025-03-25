@@ -160,6 +160,7 @@ export default function Home() {
   return (
     <main className={styles.main}>
       <Seo pageImg={`https://realcmlabs.dev1stud.io/og.webp?ts=${timestamp}`} />
+      <p className="seo">실제 사이즈를 알고 싶다면 리치랩!</p>
       <div className={`container ${styles.container}`}>
         <div className={styles.headline}>
           <h1>실제 길이/면적 계산</h1>

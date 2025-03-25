@@ -13,7 +13,7 @@ export default function Header() {
           <h1>
             <Anchor href="/">
               {isDarkMode ? <LogoLight /> : <LogoDark />}
-              <span>타임랩</span>
+              <span>리얼센치랩스(리치랩)</span>
             </Anchor>
           </h1>
           <ol>

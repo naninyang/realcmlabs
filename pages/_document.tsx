@@ -5,10 +5,10 @@ export default function Document() {
   return (
     <Html lang="ko-KR">
       <Head>
-        <meta name="application-name" content="타임랩" />
+        <meta name="application-name" content="리얼센치랩스" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="Black-translucent" />
-        <meta name="apple-mobile-web-app-title" content="타임랩" />
+        <meta name="apple-mobile-web-app-title" content="리얼센치랩스" />
         <meta name="format-detection" content="telephone=no" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="theme-color" content="#000000" />
