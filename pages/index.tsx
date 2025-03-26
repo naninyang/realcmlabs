@@ -467,7 +467,19 @@ export default function Home() {
                   </>
                 ) : (
                   <div className={styles.guide}>
-                    <span>{isVertical ? browserHeightCM.toFixed(2) : browserWidthCM.toFixed(2)} cm</span>
+                    <span>
+                      {isVertical
+                        ? singleUnit === 'mm'
+                          ? `${calculatedValues.displayHeight.toFixed(2)} cm / ${calculatedValues.displayHeightIN.toFixed(2)} in`
+                          : singleUnit === 'cm'
+                            ? `${calculatedValues.displayHeightMM.toFixed(2)} mm / ${calculatedValues.displayHeightIN.toFixed(2)} in`
+                            : `${calculatedValues.displayHeightMM.toFixed(2)} mm / ${calculatedValues.displayHeight.toFixed(2)} cm`
+                        : singleUnit === 'mm'
+                          ? `${calculatedValues.displayWidth.toFixed(2)} cm / ${calculatedValues.displayWidthIN.toFixed(2)} in`
+                          : singleUnit === 'cm'
+                            ? `${calculatedValues.displayWidthMM.toFixed(2)} mm / ${calculatedValues.displayWidthIN.toFixed(2)} in`
+                            : `${calculatedValues.displayWidthMM.toFixed(2)} mm / ${calculatedValues.displayWidth.toFixed(2)} cm`}
+                    </span>
                   </div>
                 )}
               </div>
