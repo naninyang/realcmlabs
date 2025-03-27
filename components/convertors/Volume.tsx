@@ -27,21 +27,21 @@ export default function VolumeConverter() {
   const handleConvert = () => {
     const value = Number(inputValue);
     if (!inputValue.trim() || isNaN(value)) {
-      setResult('올바른 숫자를 입력하세요.');
-      setWarning('');
+      setResult('');
+      setWarning('올바른 숫자를 입력하세요.');
       return;
     }
 
     if (!conversionRates[fromUnit] || !conversionRates[fromUnit][toUnit]) {
-      setResult('변환할 수 없는 단위입니다.');
-      setWarning('');
+      setResult('');
+      setWarning('변환할 수 없는 단위입니다.');
       return;
     }
 
     const convertedValue = value * conversionRates[fromUnit][toUnit];
 
     if (Math.abs(convertedValue) < 1e-15 || Math.abs(convertedValue) > 1e15) {
-      setWarning('⚠️ 변환된 값이 너무 작거나 너무 커서 정확한 사용에 유의해야 합니다.');
+      setWarning('변환된 값이 너무 작거나 너무 커서 정확한 사용에 유의해야 합니다.');
     } else {
       setWarning('');
     }
