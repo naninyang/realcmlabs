@@ -355,15 +355,17 @@ export default function Home() {
                 <div>
                   <dt>가로</dt>
                   <dd>
-                    {calculatedValues.displayWidth.toFixed(2)} cm / {calculatedValues.displayWidthMM.toFixed(2)} mm /{' '}
-                    {calculatedValues.displayWidthIN.toFixed(2)} in
+                    {unit !== 'cm' && `${calculatedValues.displayWidth.toFixed(2)} cm / `}
+                    {unit !== 'mm' && `${calculatedValues.displayWidthMM.toFixed(2)} mm`}
+                    {unit !== 'in' && ` / ${calculatedValues.displayWidthIN.toFixed(2)} in`}
                   </dd>
                 </div>
                 <div>
                   <dt>세로</dt>
                   <dd>
-                    {calculatedValues.displayHeight.toFixed(2)} cm / {calculatedValues.displayHeightMM.toFixed(2)} mm /{' '}
-                    {calculatedValues.displayHeightIN.toFixed(2)} in
+                    {unit !== 'cm' && `${calculatedValues.displayHeight.toFixed(2)} cm / `}
+                    {unit !== 'mm' && `${calculatedValues.displayHeightMM.toFixed(2)} mm`}
+                    {unit !== 'in' && ` / ${calculatedValues.displayHeightIN.toFixed(2)} in`}
                   </dd>
                 </div>
               </dl>
