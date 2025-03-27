@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
-import styles from '@/styles/Converters.module.sass';
 import { Bullet } from '../Svgs';
 import Anchor from '../Anchor';
+import styles from '@/styles/Converters.module.sass';
 
 type Unit = '초' | '분' | '시간' | '일' | '주' | '개월' | '년';
 
