@@ -71,7 +71,22 @@ const getShortNative = (num: number): string => {
 
 const getUnitWord = (num: number): string => getShortNative(num) + '개';
 const getAgeWord = (num: number): string => getShortNative(num) + '살';
-const getHourWord = (num: number): string => getShortNative(num) + '시';
+
+const getHourWord = (num: number): string => {
+  if (num < 1 || num > 199) return '(1~199만 지원)';
+
+  if (num <= 12) {
+    return getShortNative(num) + '시';
+  }
+
+  if (num <= 24) {
+    const sino = getSinoNumber(num) + '시';
+    const native = getShortNative(num) + '시간';
+    return `${sino} / ${native}`;
+  }
+
+  return getShortNative(num) + '시간';
+};
 
 const getMonthWord = (num: number): string => {
   if (num === 1) return '한달';
