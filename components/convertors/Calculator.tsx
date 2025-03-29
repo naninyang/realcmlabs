@@ -282,7 +282,7 @@ export default function Calculator() {
                             ? handleSpecial(btn)
                             : handleButtonClick(btn)
                     }
-                    className={`${styles.button} ${btn === '⁺/₋' || btn === '⌫' ? styles.symbol : ''}`}
+                    className={`${styles.button} ${btn === '⁺/₋' ? styles.symbol : ''} ${btn === '⌫' ? styles.backspace : ''}`}
                     aria-label={btn === '⁺/₋' ? '토글 기호' : btn}
                   >
                     {btn}
