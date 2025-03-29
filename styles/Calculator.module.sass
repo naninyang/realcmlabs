@@ -9,10 +9,10 @@
     padding: ds.rem(15) 0
     width: 100%
 
-  @include ds.mq(minLarge)
+  @include ds.mq(minMedium)
     margin: 0
 
-  @include ds.mq(maxMedium)
+  @include ds.mq(maxSmall)
     max-width: ds.rem(384)
 
   @include ds.mq(maxExtraSmall)
@@ -63,10 +63,10 @@
       display: flex
       gap: ds.rem(7)
 
-      @include ds.mq(maxMedium)
+      @include ds.mq(maxSmall)
         flex-direction: column
 
-      @include ds.mq(minLarge)
+      @include ds.mq(minMedium)
 
   .display
     background-color: ds.$hex-light
@@ -95,7 +95,7 @@
     gap: ds.rem(7)
 
     &.scientific
-      @include ds.mq(minLarge)
+      @include ds.mq(minMedium)
         @include ds.col
 
   .groups
@@ -103,7 +103,7 @@
     gap: ds.rem(7)
     width: 100%
 
-    @include ds.mq(minLarge)
+    @include ds.mq(minMedium)
       width: 40%
 
     .group
@@ -127,7 +127,7 @@
       body[data-theme='dark'] &
         background-color: ds.$hex-gray-light
 
-      @include ds.mq(minLarge)
+      @include ds.mq(minMedium)
         height: ds.rem(53)
         border-radius: ds.rem(26)
         font-size: ds.rem(16)
@@ -135,7 +135,7 @@
       &.symbol
         font-size: ds.rem(16)
 
-        @include ds.mq(minLarge)
+        @include ds.mq(minMedium)
           font-size: ds.rem(18)
 
   .operator
@@ -146,5 +146,5 @@
       body[data-theme='dark'] &
         background-color: ds.$hex-accent-light
 
-      @include ds.mq(minLarge)
+      @include ds.mq(minMedium)
         font-size: ds.rem(20)
