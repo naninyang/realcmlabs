@@ -200,7 +200,23 @@ export default function Calculator() {
     'π',
   ];
 
-  const baseButtons = ['AC', '⁺/₋', '%', '7', '8', '9', '4', '5', '6', '1', '2', '3', 'AC', '0', '.'];
+  const handleBackspace = () => {
+    const replacements = ['×10^', '^', 'log₁₀', 'ln', '𝑒ˣ', '10ˣ', 'xʸ', '¹⁄ₓ', '√x', '³√x', 'ʸ√x'];
+
+    for (const token of replacements) {
+      if (input.endsWith(token)) {
+        return setInput((prev) => prev.slice(0, -token.length));
+      }
+    }
+
+    if (input.length <= 1) {
+      setInput('0');
+    } else {
+      setInput((prev) => prev.slice(0, -1));
+    }
+  };
+
+  const baseButtons = ['AC', '⁺/₋', '%', '7', '8', '9', '4', '5', '6', '1', '2', '3', '⌫', '0', '.'];
   const operatorButtons = ['÷', '×', '−', '+', '='];
   const renderButtons = [...scientificButtons, angleMode === 'deg' ? 'Rad' : 'Deg'];
 
@@ -260,11 +276,13 @@ export default function Calculator() {
                     onClick={() =>
                       btn === 'AC'
                         ? handleClear()
-                        : btn === '⁺/₋' || btn === '%'
-                          ? handleSpecial(btn)
-                          : handleButtonClick(btn)
+                        : btn === '⌫'
+                          ? handleBackspace()
+                          : btn === '⁺/₋' || btn === '%'
+                            ? handleSpecial(btn)
+                            : handleButtonClick(btn)
                     }
-                    className={`${styles.button} ${btn === '⁺/₋' ? styles.symbol : ''}`}
+                    className={`${styles.button} ${btn === '⁺/₋' || btn === '⌫' ? styles.symbol : ''}`}
                     aria-label={btn === '⁺/₋' ? '토글 기호' : btn}
                   >
                     {btn}
