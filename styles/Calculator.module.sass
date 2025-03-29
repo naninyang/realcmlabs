@@ -111,6 +111,10 @@
         grid-template-columns: repeat(3, 1fr)
         width: 75%
 
+        .button
+          button
+            font-size: ds.rem(22)
+
       &:nth-of-type(2)
         @include ds.col
         grid-template-columns: repeat(1, 1fr)
@@ -140,15 +144,11 @@
 
       &.backspace
         font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif
-        font-size: ds.rem(20)
 
   .operator
     button
       background-color: ds.$hex-accent-dark
-      font-size: ds.rem(16)
+      font-size: ds.rem(24)
 
       body[data-theme='dark'] &
         background-color: ds.$hex-accent-light
-
-      @include ds.mq(minMedium)
-        font-size: ds.rem(20)
