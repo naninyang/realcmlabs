@@ -1,0 +1,108 @@
+.calculator
+  display: flex
+  flex-direction: column
+  gap: ds.rem(23)
+  width: 100%
+  margin: 0 auto
+
+  @include ds.mq(minSmall)
+    padding: ds.rem(15) 0
+    width: 100%
+
+  @include ds.mq(minLarge)
+    margin: 0
+
+  @include ds.mq(maxMedium)
+    max-width: ds.rem(384)
+
+  @include ds.mq(maxExtraSmall)
+    max-width: none
+
+  div, button
+    font-family: var(--mono)
+
+  .module
+    display: flex
+    flex-grow: 1
+    flex-direction: column
+    gap: ds.rem(13)
+    padding: ds.rem(17)
+
+    @include ds.mq(minSmall)
+      border: ds.rem(2) solid ds.$hex-light
+      border-radius: ds.rem(17)
+
+      body[data-theme='dark'] &
+        border: ds.rem(2) solid ds.$hex-black
+
+    > h2
+      font-size: ds.rem(20)
+      @include ds.fw(500)
+
+    .calc
+      display: flex
+      gap: ds.rem(7)
+
+      @include ds.mq(maxMedium)
+        flex-direction: column
+
+      @include ds.mq(minLarge)
+
+  .display
+    background-color: ds.$hex-light
+    border-radius: ds.rem(3)
+    padding: ds.rem(23)
+    font-size: ds.rem(23)
+    text-align: right
+
+    body[data-theme='dark'] &
+      background-color: ds.$hex-black
+
+  .group
+    display: grid
+    grid-template-columns: repeat(6, 1fr)
+    gap: ds.rem(7)
+
+    &.scientific
+      @include ds.mq(minLarge)
+        @include ds.col
+
+  .groups
+    display: flex
+    gap: ds.rem(7)
+    width: 100%
+
+    @include ds.mq(minLarge)
+      width: 40%
+
+    .group
+      &:nth-of-type(1)
+        grid-template-columns: repeat(3, 1fr)
+        width: 75%
+
+      &:nth-of-type(2)
+        @include ds.col
+        grid-template-columns: repeat(1, 1fr)
+
+  .button
+    button
+      background-color: ds.$hex-gray-dark
+      width: 100%
+      border-radius: ds.rem(25)
+      padding: ds.rem(16) 0
+      font-size: ds.rem(14)
+      text-align: center
+
+      body[data-theme='dark'] &
+        background-color: ds.$hex-gray-light
+
+      @include ds.mq(minLarge)
+        font-size: ds.rem(16)
+        border-radius: ds.rem(26)
+
+  .operator
+    button
+      background-color: ds.$hex-accent-dark
+
+      body[data-theme='dark'] &
+        background-color: ds.$hex-accent-light

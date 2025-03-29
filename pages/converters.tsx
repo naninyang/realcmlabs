@@ -1,5 +1,6 @@
 import Anchor from '@/components/Anchor';
 import AreaConverter from '@/components/convertors/Area';
+import Calculator from '@/components/convertors/Calculator';
 import Counter from '@/components/convertors/Counter';
 import LengthConverter from '@/components/convertors/Length';
 import MassConverter from '@/components/convertors/Mass';
@@ -38,6 +39,7 @@ export default function Converters() {
         <PowerCalculator />
         <Counter />
         <TimeBreakdown />
+        <Calculator />
       </div>
     </main>
   );
