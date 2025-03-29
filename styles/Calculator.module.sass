@@ -16,7 +16,12 @@
     max-width: ds.rem(384)
 
   @include ds.mq(maxExtraSmall)
+    background-color: ds.$hex-white
     max-width: none
+    width: 100%
+
+    body[data-theme='dark'] &
+      background-color: ds.$hex-black
 
   div, button
     font-family: var(--mono)
