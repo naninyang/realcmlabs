@@ -11,7 +11,7 @@ export default function Calculator() {
   const handleButtonClick = (value: string) => {
     setInput((prev) => {
       if (prev === '0') return value;
-      if (prev === '-0') return '-' + value;
+      if (prev === '-0') return '−' + value;
       return prev + value;
     });
   };
@@ -43,7 +43,7 @@ export default function Calculator() {
 
   const handleSpecial = (type: string) => {
     if (type === '⁺/₋') {
-      setInput((prev) => (prev.startsWith('-') ? prev.slice(1) : '-' + prev));
+      setInput((prev) => (prev.startsWith('−') ? prev.slice(1) : '−' + prev));
     } else if (type === '%') {
       try {
         const result = parseFloat(input) / 100;
@@ -201,7 +201,7 @@ export default function Calculator() {
   ];
 
   const baseButtons = ['AC', '⁺/₋', '%', '7', '8', '9', '4', '5', '6', '1', '2', '3', 'AC', '0', '.'];
-  const operatorButtons = ['÷', '×', '-', '+', '='];
+  const operatorButtons = ['÷', '×', '−', '+', '='];
   const renderButtons = [...scientificButtons, angleMode === 'deg' ? 'Rad' : 'Deg'];
 
   return (
@@ -234,7 +234,7 @@ export default function Calculator() {
 
                     return handleButtonClick(btn);
                   }}
-                  className={styles.button}
+                  className={`${styles.button} ${btn === '𝑒' || btn === '𝑒ˣ' || btn === '¹⁄ₓ' ? styles.symbol : ''}`}
                   aria-label={
                     btn === '𝑒'
                       ? "Euler's number"
@@ -264,7 +264,7 @@ export default function Calculator() {
                           ? handleSpecial(btn)
                           : handleButtonClick(btn)
                     }
-                    className={styles.button}
+                    className={`${styles.button} ${btn === '⁺/₋' ? styles.symbol : ''}`}
                     aria-label={btn === '⁺/₋' ? '토글 기호' : btn}
                   >
                     {btn}
@@ -275,7 +275,14 @@ export default function Calculator() {
             <div className={styles.group}>
               {operatorButtons.map((btn) => (
                 <div className={`${styles.button} ${styles.operator}`} key={btn}>
-                  <button onClick={() => (btn === '=' ? handleEvaluate() : handleButtonClick(btn))}>{btn}</button>
+                  <button
+                    onClick={() => {
+                      const symbol = btn === '−' ? '-' : btn;
+                      return symbol === '=' ? handleEvaluate() : handleButtonClick(symbol);
+                    }}
+                  >
+                    {btn}
+                  </button>
                 </div>
               ))}
             </div>

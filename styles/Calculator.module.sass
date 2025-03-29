@@ -119,8 +119,8 @@
     button
       background-color: ds.$hex-gray-dark
       width: 100%
+      height: ds.rem(50)
       border-radius: ds.rem(25)
-      padding: ds.rem(16) 0
       font-size: ds.rem(14)
       text-align: center
 
@@ -128,12 +128,23 @@
         background-color: ds.$hex-gray-light
 
       @include ds.mq(minLarge)
-        font-size: ds.rem(16)
+        height: ds.rem(53)
         border-radius: ds.rem(26)
+        font-size: ds.rem(16)
+
+      &.symbol
+        font-size: ds.rem(16)
+
+        @include ds.mq(minLarge)
+          font-size: ds.rem(18)
 
   .operator
     button
       background-color: ds.$hex-accent-dark
+      font-size: ds.rem(16)
 
       body[data-theme='dark'] &
         background-color: ds.$hex-accent-light
+
+      @include ds.mq(minLarge)
+        font-size: ds.rem(20)
