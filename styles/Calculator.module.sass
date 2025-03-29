@@ -39,6 +39,21 @@
       font-size: ds.rem(20)
       @include ds.fw(500)
 
+    .notice
+      font-weight: 500
+      color: ds.$hex-accent-light
+
+      a
+        font-weight: 700
+        color: ds.$hex-black
+        text-decoration: underline
+
+      body[data-theme='dark'] &
+        color: ds.$hex-accent-dark
+
+        a
+          color: ds.$hex-white
+
     .calc
       display: flex
       gap: ds.rem(7)
@@ -50,6 +65,7 @@
 
   .display
     background-color: ds.$hex-light
+    position: relative
     border-radius: ds.rem(3)
     padding: ds.rem(23)
     font-size: ds.rem(23)
@@ -57,6 +73,16 @@
 
     body[data-theme='dark'] &
       background-color: ds.$hex-black
+
+    span
+      position: absolute
+      top: ds.rem(12)
+      left: ds.rem(12)
+      font-size: ds.rem(12)
+      color: ds.$hex-accent-light
+
+      body[data-theme='dark'] &
+        color: ds.$hex-accent-dark
 
   .group
     display: grid

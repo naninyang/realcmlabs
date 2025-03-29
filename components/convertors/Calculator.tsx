@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { sin, cos, tan, pi, e as E } from 'mathjs';
+import { sin, cos, tan, sinh, cosh, tanh, pi, e as E } from 'mathjs';
 import { evaluateExpression } from '@/lib/evaluate';
 import styles from '@/styles/Calculator.module.sass';
 
@@ -9,7 +9,11 @@ export default function Calculator() {
   const [angleMode, setAngleMode] = useState<'deg' | 'rad'>('deg');
 
   const handleButtonClick = (value: string) => {
-    setInput((prev) => (prev === '0' ? value : prev + value));
+    setInput((prev) => {
+      if (prev === '0') return value;
+      if (prev === '-0') return '-' + value;
+      return prev + value;
+    });
   };
 
   const handleClear = () => setInput('0');
@@ -39,8 +43,7 @@ export default function Calculator() {
 
   const handleSpecial = (type: string) => {
     if (type === '⁺/₋') {
-      if (input.startsWith('-')) setInput(input.slice(1));
-      else setInput('-' + input);
+      setInput((prev) => (prev.startsWith('-') ? prev.slice(1) : '-' + prev));
     } else if (type === '%') {
       try {
         const result = parseFloat(input) / 100;
@@ -49,23 +52,22 @@ export default function Calculator() {
         setInput('Error');
       }
     }
+    if (input === '0' || input === '-0') {
+      setInput('0');
+    }
   };
 
   const handleScientific = (btn: string) => {
     const x = parseFloat(input);
-
-    if (isNaN(x)) {
-      setInput('Error');
-      return;
-    }
+    if (isNaN(x)) return setInput('Error');
 
     try {
       const result =
-        btn === 'x^y'
+        btn === 'xʸ'
           ? input + '^'
-          : btn === '𝑒^x'
+          : btn === '𝑒ˣ'
             ? Math.exp(x)
-            : btn === '10^x'
+            : btn === '10ˣ'
               ? Math.pow(10, x)
               : btn === 'ln'
                 ? Math.log(x)
@@ -73,8 +75,7 @@ export default function Calculator() {
                   ? Math.log10(x)
                   : input;
 
-      if (typeof result === 'number') setInput(result.toString());
-      else setInput(result);
+      setInput(typeof result === 'number' ? result.toString() : result);
     } catch {
       setInput('Error');
     }
@@ -82,15 +83,36 @@ export default function Calculator() {
 
   const handleTrig = (btn: string) => {
     const x = parseFloat(input);
-    if (isNaN(x)) {
-      setInput('Error');
-      return;
+    if (isNaN(x)) return setInput('Error');
+
+    if (['sin', 'cos', 'tan'].includes(btn)) {
+      const angle = angleMode === 'deg' ? (x * Math.PI) / 180 : x;
+      const result = btn === 'sin' ? sin(angle) : btn === 'cos' ? cos(angle) : tan(angle);
+      return setInput(result.toString());
+    }
+
+    if (['sinh', 'cosh', 'tanh'].includes(btn)) {
+      const result = btn === 'sinh' ? sinh(x) : btn === 'cosh' ? cosh(x) : tanh(x);
+      return setInput(result.toString());
     }
 
     const angle = angleMode === 'deg' ? (x * Math.PI) / 180 : x;
 
     try {
-      const result = btn === 'sin' ? sin(angle) : btn === 'cos' ? cos(angle) : btn === 'tan' ? tan(angle) : input;
+      const result =
+        btn === 'sin'
+          ? sin(angle)
+          : btn === 'cos'
+            ? cos(angle)
+            : btn === 'tan'
+              ? tan(angle)
+              : btn === 'sinh'
+                ? sinh(angle)
+                : btn === 'cosh'
+                  ? cosh(angle)
+                  : btn === 'tanh'
+                    ? tanh(angle)
+                    : input;
 
       setInput(result.toString());
     } catch {
@@ -105,9 +127,11 @@ export default function Calculator() {
 
   const handlePowerAndRoots = (btn: string) => {
     const x = parseFloat(input);
-    if (isNaN(x)) {
-      setInput('Error');
-      return;
+    if (isNaN(x)) return setInput('Error');
+
+    if (btn === '¹⁄ₓ') {
+      if (x === 0) return setInput('Error');
+      return setInput((1 / x).toString());
     }
 
     try {
@@ -120,7 +144,9 @@ export default function Calculator() {
               ? Math.sqrt(x)
               : btn === '³√x'
                 ? Math.cbrt(x)
-                : input;
+                : btn === '¹⁄ₓ'
+                  ? 1 / x
+                  : input;
 
       setInput(result.toString());
     } catch {
@@ -130,32 +156,16 @@ export default function Calculator() {
 
   const handleAdvanced = (btn: string) => {
     const x = parseFloat(input);
-    if (btn === '2nd') {
-      return;
-    }
-
-    if (btn === 'Rand') {
-      const rand = Math.random();
-      setInput(rand.toString());
-      return;
-    }
-
+    if (btn === '2nd') return;
+    if (btn === 'Rand') return setInput(Math.random().toString());
     if (btn === 'x!') {
-      if (isNaN(x) || x < 0 || !Number.isInteger(x)) {
-        setInput('Error');
-        return;
-      }
-
+      if (isNaN(x) || x < 0 || !Number.isInteger(x)) return setInput('Error');
       const factorial = (n: number): number => (n <= 1 ? 1 : n * factorial(n - 1));
-
-      setInput(factorial(x).toString());
-      return;
+      return setInput(factorial(x).toString());
     }
-
-    if (btn === 'EE') {
-      setInput((prev) => prev + '×10^');
-      return;
-    }
+    if (btn === 'EE') return setInput((prev) => prev + '×10^');
+    if (btn === 'Deg') return setAngleMode('deg');
+    if (btn === 'Rad') return setAngleMode('rad');
   };
 
   const scientificButtons = [
@@ -188,32 +198,40 @@ export default function Calculator() {
     'cosh',
     'tanh',
     'π',
-    'Deg',
   ];
 
   const baseButtons = ['AC', '⁺/₋', '%', '7', '8', '9', '4', '5', '6', '1', '2', '3', 'AC', '0', '.'];
   const operatorButtons = ['÷', '×', '-', '+', '='];
+  const renderButtons = [...scientificButtons, angleMode === 'deg' ? 'Rad' : 'Deg'];
 
   return (
     <section className={styles.calculator}>
       <div className={styles.module}>
         <h2>공학 계산기</h2>
+        <div className={styles.notice}>
+          <p>* AC 버튼을 누르기 전까지는 절대 리셋되지 않습니다.</p>
+          <p>* AC 버튼을 누르더라도 Rad/Deg 상태는 초기화되지 않습니다.</p>
+        </div>
         <div className={styles.display} role="status" aria-live="polite" aria-atomic="true">
-          {input}
+          {angleMode === 'rad' && <span>Rad</span>}
+          <strong>{input}</strong>
         </div>
         <div className={styles.calc}>
           <div className={`${styles.group} ${styles.scientific}`}>
-            {scientificButtons.map((btn) => (
+            {renderButtons.map((btn) => (
               <div className={styles.button} key={btn}>
                 <button
                   onClick={() => {
+                    if (btn === 'Rad') return setAngleMode('rad');
+                    if (btn === 'Deg') return setAngleMode('deg');
+
                     if (['mc', 'm+', 'm-', 'mr'].includes(btn)) return handleMemory(btn);
-                    if (['x^y', '𝑒^x', '10^x', 'ln', 'log₁₀'].includes(btn)) return handleScientific(btn);
-                    if (['sin', 'cos', 'tan'].includes(btn)) return handleTrig(btn);
+                    if (['xʸ', '𝑒ˣ', '10ˣ', 'ln', 'log₁₀'].includes(btn)) return handleScientific(btn);
+                    if (['sin', 'cos', 'tan', 'sinh', 'cosh', 'tanh'].includes(btn)) return handleTrig(btn);
                     if (['π', '𝑒'].includes(btn)) return handleInsertConstant(btn);
-                    if (btn === 'Deg/Rad') return setAngleMode((prev) => (prev === 'deg' ? 'rad' : 'deg'));
-                    if (['x²', 'x³', '√x', '³√x'].includes(btn)) return handlePowerAndRoots(btn);
+                    if (['x²', 'x³', '√x', '³√x', '¹⁄ₓ'].includes(btn)) return handlePowerAndRoots(btn);
                     if (['x!', 'Rand', 'EE', '2nd'].includes(btn)) return handleAdvanced(btn);
+
                     return handleButtonClick(btn);
                   }}
                   className={styles.button}
@@ -222,15 +240,14 @@ export default function Calculator() {
                       ? "Euler's number"
                       : btn === 'π'
                         ? 'Pi'
-                        : btn === 'Deg'
-                          ? angleMode === 'deg'
-                            ? 'Degree mode'
-                            : 'Radian mode'
-                          : btn
+                        : btn === 'Rad'
+                          ? 'Switch to radian mode'
+                          : btn === 'Deg'
+                            ? 'Switch to degree mode'
+                            : btn
                   }
-                  aria-pressed={btn === 'Deg' ? angleMode === 'deg' : undefined}
                 >
-                  {btn === 'Deg/Rad' ? angleMode.toUpperCase() : btn}
+                  {btn}
                 </button>
               </div>
             ))}
@@ -240,7 +257,6 @@ export default function Calculator() {
               {baseButtons.map((btn) => (
                 <div className={styles.button} key={btn}>
                   <button
-                    key={btn}
                     onClick={() =>
                       btn === 'AC'
                         ? handleClear()
@@ -249,7 +265,7 @@ export default function Calculator() {
                           : handleButtonClick(btn)
                     }
                     className={styles.button}
-                    aria-label={btn === '⁺/₋' ? 'Toggle sign' : btn}
+                    aria-label={btn === '⁺/₋' ? '토글 기호' : btn}
                   >
                     {btn}
                   </button>
@@ -259,9 +275,7 @@ export default function Calculator() {
             <div className={styles.group}>
               {operatorButtons.map((btn) => (
                 <div className={`${styles.button} ${styles.operator}`} key={btn}>
-                  <button key={btn} onClick={() => (btn === '=' ? handleEvaluate() : handleButtonClick(btn))}>
-                    {btn}
-                  </button>
+                  <button onClick={() => (btn === '=' ? handleEvaluate() : handleButtonClick(btn))}>{btn}</button>
                 </div>
               ))}
             </div>
