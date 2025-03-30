@@ -8,6 +8,7 @@ export default function Calculator() {
   const [memory, setMemory] = useState<number>(0);
   const [angleMode, setAngleMode] = useState<'deg' | 'rad'>('deg');
   const displayRef = useRef<HTMLSpanElement | null>(null);
+  const calculatorRef = useRef<HTMLElement | null>(null);
 
   const handleButtonClick = (value: string) => {
     setInput((prev) => {
@@ -169,6 +170,30 @@ export default function Calculator() {
     if (btn === 'Rad') return setAngleMode('rad');
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    const key = e.key;
+
+    if (key === 'Escape') return handleClear();
+
+    if (key === 'Backspace') {
+      e.preventDefault();
+      return handleBackspace();
+    }
+
+    if (key === 'Enter' || key === '=') return handleEvaluate();
+
+    if (/^[0-9%\.]$/.test(key)) return handleButtonClick(key);
+
+    if (key === '/') return handleButtonClick('÷');
+    if (key === '*') return handleButtonClick('×');
+    if (key === '-') return handleButtonClick('−');
+    if (key === '+') return handleButtonClick('+');
+
+    if (key === '^') return handleScientific('xʸ');
+    if (key === '!') return handleAdvanced('x!');
+    if (key.toLowerCase() === 'p') return handleInsertConstant('π');
+  };
+
   const scientificButtons = [
     '(',
     ')',
@@ -275,12 +300,56 @@ export default function Calculator() {
   }, [input]);
 
   return (
-    <section className={styles.calculator}>
+    <section className={styles.calculator} tabIndex={0} onKeyDown={handleKeyDown} ref={calculatorRef}>
       <div className={styles.module}>
         <h2>공학 계산기</h2>
         <div className={styles.notice}>
           <p>* AC 버튼을 누르기 전까지는 절대 리셋되지 않습니다.</p>
           <p>* AC 버튼을 누르더라도 Rad/Deg 상태는 초기화되지 않습니다.</p>
+        </div>
+        <div className={styles.usage}>
+          <dl>
+            <div>
+              <dt>AC</dt>
+              <dd>Esc 키</dd>
+            </div>
+            <div>
+              <dt>⌫</dt>
+              <dd>Backspace 키</dd>
+            </div>
+            <div>
+              <dt>=</dt>
+              <dd>= 또는 엔터(리턴) 키</dd>
+            </div>
+            <div>
+              <dt>÷</dt>
+              <dd>/ 키</dd>
+            </div>
+            <div>
+              <dt>×</dt>
+              <dd>* 키</dd>
+            </div>
+            <div>
+              <dt>xʸ</dt>
+              <dd>^ 키</dd>
+            </div>
+            <div>
+              <dt>x!</dt>
+              <dd>! 키</dd>
+            </div>
+            <div>
+              <dt>π</dt>
+              <dd>p 키</dd>
+            </div>
+            <div>
+              <dt>숫자, 점, +, -</dt>
+              <dd>그대로 사용</dd>
+            </div>
+          </dl>
+          <div className={styles.notice}>
+            <p>* 언급되지 않은 버튼은 직접 버튼을 눌러야 합니다.</p>
+            <p>* 키보드로 연산을 하기 위해서는 결과가 나오는 영역에 클릭을 한번 해주셔야 합니다.</p>
+          </div>
         </div>
         <div className={styles.display} role="status" aria-live="polite" aria-atomic="true">
           {angleMode === 'rad' && (

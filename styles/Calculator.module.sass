@@ -56,6 +56,43 @@
         a
           color: ds.$hex-white
 
+    .usage
+      display: flex
+      flex-direction: column
+      gap: ds.rem(12)
+      border: ds.rem(2) solid rgba(ds.$hex-gray-dark, .2)
+      border-radius: ds.rem(3)
+      padding: ds.rem(12)
+
+      body[data-theme='dark'] &
+        border: ds.rem(2) solid rgba(ds.$hex-gray-light, .2)
+
+      dl
+        display: flex
+        flex-direction: column
+        align-items: center
+
+        div
+          display: flex
+          gap: ds.rem(12)
+          font-size: ds.rem(14)
+
+          dt
+            width: ds.rem(80)
+            font-weight: 500
+            opacity: .5
+            text-align: right
+
+          dd
+            width: ds.rem(125)
+            font-weight: 700
+      p
+        font-size: ds.rem(14)
+        color: ds.$hex-accent-light
+
+        body[data-theme='dark'] &
+          color: ds.$hex-accent-dark
+
     .calc
       display: flex
       gap: ds.rem(7)
