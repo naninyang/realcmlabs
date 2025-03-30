@@ -157,7 +157,7 @@ export default function Calculator() {
 
   const handleAdvanced = (btn: string) => {
     const x = parseFloat(input);
-    if (btn === '2nd') return;
+    if (btn === '2ⁿᵈ') return;
     if (btn === 'Rand') return setInput(Math.random().toString());
     if (btn === 'x!') {
       if (isNaN(x) || x < 0 || !Number.isInteger(x)) return setInput('Error');
@@ -176,7 +176,7 @@ export default function Calculator() {
     'm+',
     'm-',
     'mr',
-    '2nd',
+    '2ⁿᵈ',
     'x²',
     'x³',
     'xʸ',
@@ -200,6 +200,53 @@ export default function Calculator() {
     'tanh',
     'π',
   ];
+
+  const ariaLabelsScientific: Record<string, string> = {
+    '(': '괄호 열기',
+    ')': '괄호 닫기',
+    mc: '메모리 비우기',
+    'm+': '표시된 값을 메모리에 더하기',
+    'm-': '메모리에서 표시된 값 빼기',
+    mr: '메모리에 저장된 값 재호출',
+    '2ⁿᵈ': '일부 버튼의 대체 함수 표시',
+    'x²': '특정 값의 제곱 계산',
+    'x³': '특정 값의 세제곱 계산',
+    xʸ: '첫 번째 값의 두 번째 값 거듭제곱 계산',
+    '𝑒ˣ': '자연상수 e의 거듭제곱 계산',
+    '10ˣ': '10의 거듭제곱 계산',
+    ln: '자연로그 계산',
+    'log₁₀': '상용로그 계산',
+    sin: '사인 값 계산',
+    cos: '코사인 값 계산',
+    tan: '탄젠트 값 계산',
+    sinh: '쌍곡 사인 계산',
+    cosh: '쌍곡 코사인 계산',
+    tanh: '쌍곡 탄젠트 계산',
+    π: '원주율 파이 입력',
+    '𝑒': '자연상수 e 입력',
+    EE: '지수 입력 형식',
+    Rand: '무작위 난수 입력',
+    'x!': '팩토리얼 계산',
+    '√x': '제곱근 계산',
+    '³√x': '세제곱근 계산',
+    '¹⁄ₓ': '역수 계산',
+    Deg: '각도 단위를 도로 변경',
+    Rad: '각도 단위를 라디안으로 변경',
+  };
+
+  const ariaLabelsBase: Record<string, string> = {
+    AC: '모두 지우기',
+    '⁺⁄₋': '특정 값의 부호 변경',
+    '⌫': '백스페이스',
+  };
+
+  const ariaLabelsOperator: Record<string, string> = {
+    '÷': '나누기',
+    '×': '곱하기',
+    '−': '빼기',
+    '+': '더하기',
+    '=': '동호',
+  };
 
   const handleBackspace = () => {
     const replacements = ['×10^', '^', 'log₁₀', 'ln', '𝑒ˣ', '10ˣ', 'xʸ', '¹⁄ₓ', '√x', '³√x', 'ʸ√x'];
@@ -236,7 +283,11 @@ export default function Calculator() {
           <p>* AC 버튼을 누르더라도 Rad/Deg 상태는 초기화되지 않습니다.</p>
         </div>
         <div className={styles.display} role="status" aria-live="polite" aria-atomic="true">
-          {angleMode === 'rad' && <span>Rad</span>}
+          {angleMode === 'rad' && (
+            <span aria-label="라디안" title="라디안">
+              Rad
+            </span>
+          )}
           <strong ref={displayRef}>{input}</strong>
         </div>
         <div className={styles.calc}>
@@ -253,22 +304,13 @@ export default function Calculator() {
                     if (['sin', 'cos', 'tan', 'sinh', 'cosh', 'tanh'].includes(btn)) return handleTrig(btn);
                     if (['π', '𝑒'].includes(btn)) return handleInsertConstant(btn);
                     if (['x²', 'x³', '√x', '³√x', '¹⁄ₓ'].includes(btn)) return handlePowerAndRoots(btn);
-                    if (['x!', 'Rand', 'EE', '2nd'].includes(btn)) return handleAdvanced(btn);
+                    if (['x!', 'Rand', 'EE', '2ⁿᵈ'].includes(btn)) return handleAdvanced(btn);
 
                     return handleButtonClick(btn);
                   }}
                   className={`${styles.button} ${btn === '𝑒' || btn === '𝑒ˣ' || btn === '¹⁄ₓ' ? styles.symbol : ''}`}
-                  aria-label={
-                    btn === '𝑒'
-                      ? "Euler's number"
-                      : btn === 'π'
-                        ? 'Pi'
-                        : btn === 'Rad'
-                          ? 'Switch to radian mode'
-                          : btn === 'Deg'
-                            ? 'Switch to degree mode'
-                            : btn
-                  }
+                  aria-label={ariaLabelsScientific[btn] ?? btn}
+                  title={ariaLabelsScientific[btn] ?? btn}
                 >
                   {btn}
                 </button>
@@ -290,7 +332,8 @@ export default function Calculator() {
                             : handleButtonClick(btn)
                     }
                     className={`${styles.button} ${btn === '⌫' ? styles.backspace : ''}`}
-                    aria-label={btn === '⁺⁄₋' ? '토글 기호' : btn}
+                    aria-label={ariaLabelsBase[btn] ?? btn}
+                    title={ariaLabelsBase[btn] ?? btn}
                   >
                     {btn}
                   </button>
@@ -305,6 +348,7 @@ export default function Calculator() {
                       const symbol = btn === '−' ? '-' : btn;
                       return symbol === '=' ? handleEvaluate() : handleButtonClick(symbol);
                     }}
+                    aria-label={ariaLabelsOperator[btn] ?? btn}
                   >
                     {btn}
                   </button>
