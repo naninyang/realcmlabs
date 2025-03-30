@@ -348,10 +348,20 @@ export default function Calculator() {
           </dl>
           <div className={styles.notice}>
             <p>* 언급되지 않은 버튼은 직접 버튼을 눌러야 합니다.</p>
-            <p>* 키보드로 연산을 하기 위해서는 결과가 나오는 영역에 클릭을 한번 해주셔야 합니다.</p>
+            <p>* 키보드로 연산을 하기 위해서는 계산기 아무 영역이나 한번 클릭해 주셔야 합니다.</p>
+            <p>* 결과 나오는 영역을 누르면 결과값이 클립보드에 저장됩니다.</p>
           </div>
         </div>
-        <div className={styles.display} role="status" aria-live="polite" aria-atomic="true">
+        <div
+          className={styles.display}
+          role="button"
+          aria-live="polite"
+          aria-atomic="true"
+          onClick={() => {
+            navigator.clipboard.writeText(input);
+            alert('계산된 결과값이 클립보드에 저장되었습니다.');
+          }}
+        >
           {angleMode === 'rad' && (
             <span aria-label="라디안" title="라디안">
               Rad
