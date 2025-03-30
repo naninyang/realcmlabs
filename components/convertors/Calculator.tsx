@@ -182,7 +182,7 @@ export default function Calculator() {
 
     if (key === 'Enter' || key === '=') return handleEvaluate();
 
-    if (/^[0-9%\.]$/.test(key)) return handleButtonClick(key);
+    if (/^[0-9%()\.]$/.test(key)) return handleButtonClick(key);
 
     if (key === '/') return handleButtonClick('÷');
     if (key === '*') return handleButtonClick('×');

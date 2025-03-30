@@ -201,6 +201,12 @@
         border-radius: ds.rem(26)
         font-size: ds.rem(16)
 
+      &:focus-visible
+        outline: ds.rem(2) solid ds.$hex-accent-light
+
+        body[data-theme='dark'] &
+          outline: ds.rem(2) solid ds.$hex-accent-dark
+
       &.symbol
         font-size: ds.rem(16)
 
