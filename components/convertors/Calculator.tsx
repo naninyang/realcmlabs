@@ -42,7 +42,7 @@ export default function Calculator() {
   };
 
   const handleSpecial = (type: string) => {
-    if (type === '⁺/₋') {
+    if (type === '⁺⁄₋') {
       setInput((prev) => (prev.startsWith('−') ? prev.slice(1) : '−' + prev));
     } else if (type === '%') {
       try {
@@ -216,7 +216,7 @@ export default function Calculator() {
     }
   };
 
-  const baseButtons = ['AC', '⁺/₋', '%', '7', '8', '9', '4', '5', '6', '1', '2', '3', '⌫', '0', '.'];
+  const baseButtons = ['AC', '⁺⁄₋', '%', '7', '8', '9', '4', '5', '6', '1', '2', '3', '⌫', '0', '.'];
   const operatorButtons = ['÷', '×', '−', '+', '='];
   const renderButtons = [...scientificButtons, angleMode === 'deg' ? 'Rad' : 'Deg'];
 
@@ -278,12 +278,12 @@ export default function Calculator() {
                         ? handleClear()
                         : btn === '⌫'
                           ? handleBackspace()
-                          : btn === '⁺/₋' || btn === '%'
+                          : btn === '⁺⁄₋' || btn === '%'
                             ? handleSpecial(btn)
                             : handleButtonClick(btn)
                     }
                     className={`${styles.button} ${btn === '⌫' ? styles.backspace : ''}`}
-                    aria-label={btn === '⁺/₋' ? '토글 기호' : btn}
+                    aria-label={btn === '⁺⁄₋' ? '토글 기호' : btn}
                   >
                     {btn}
                   </button>

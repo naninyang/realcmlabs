@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import type { AppProps } from 'next/app';
-import { IBM_Plex_Mono, Noto_Sans_KR } from 'next/font/google';
+import { Doto, Inter, Noto_Sans, Noto_Sans_KR, Roboto } from 'next/font/google';
 import localFont from 'next/font/local';
 import Script from 'next/script';
 import { useRouter } from 'next/router';
@@ -15,10 +15,16 @@ const Noto = Noto_Sans_KR({
   subsets: ['cyrillic'],
 });
 
-const Plex = IBM_Plex_Mono({
+const Mono = Doto({
   weight: ['100', '200', '300', '400', '500', '600', '700'],
   subsets: ['latin'],
-  variable: '--mono',
+  variable: '--doto',
+});
+
+const Rbto = Roboto({
+  weight: ['100', '200', '300', '400', '500', '600', '700'],
+  subsets: ['latin'],
+  variable: '--rbto',
 });
 
 const Square = localFont({
@@ -72,7 +78,7 @@ export default function App({ Component, pageProps }: AppProps) {
           }
         `}
       </style>
-      <div className={`${Square.variable} ${Plex.variable}`}>
+      <div className={`${Square.variable} ${Mono.variable} ${Rbto.variable}`}>
         <Header />
         <Component {...pageProps} />
         <Footer />

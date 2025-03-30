@@ -23,9 +23,6 @@
     body[data-theme='dark'] &
       background-color: ds.$hex-black
 
-  div, button
-    font-family: var(--mono)
-
   .module
     display: flex
     flex-grow: 1
@@ -66,8 +63,6 @@
       @include ds.mq(maxSmall)
         flex-direction: column
 
-      @include ds.mq(minMedium)
-
   .display
     background-color: ds.$hex-light
     position: relative
@@ -89,6 +84,11 @@
       body[data-theme='dark'] &
         color: ds.$hex-accent-dark
 
+    strong
+      font-family: var(--doto)
+      font-weight: 700
+      font-variation-settings: "wght" 700
+
   .group
     display: grid
     grid-template-columns: repeat(6, 1fr)
@@ -97,6 +97,13 @@
     &.scientific
       @include ds.mq(minMedium)
         @include ds.col
+
+      .button
+        button
+          background-color: rgba(ds.$hex-gray-dark, .2)
+
+          body[data-theme='dark'] &
+            background-color: rgba(ds.$hex-gray-light, .2)
 
   .groups
     display: flex
@@ -112,8 +119,19 @@
         width: 75%
 
         .button
+          &:nth-of-type(1), &:nth-of-type(2), &:nth-of-type(3)
+            button
+              background-color: rgba(ds.$hex-gray-light, .7)
+
+              body[data-theme='dark'] &
+                background-color: rgba(ds.$hex-gray-dark, .7)
+
           button
             font-size: ds.rem(22)
+            background-color: rgba(ds.$hex-gray-light, .2)
+
+            body[data-theme='dark'] &
+              background-color: rgba(ds.$hex-gray-dark, .2)
 
       &:nth-of-type(2)
         @include ds.col
@@ -121,15 +139,12 @@
 
   .button
     button
-      background-color: ds.$hex-gray-dark
       width: 100%
       height: ds.rem(50)
       border-radius: ds.rem(25)
+      font-family: var(--rbto)
       font-size: ds.rem(14)
       text-align: center
-
-      body[data-theme='dark'] &
-        background-color: ds.$hex-gray-light
 
       @include ds.mq(minMedium)
         height: ds.rem(53)
