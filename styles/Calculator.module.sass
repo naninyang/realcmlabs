@@ -76,8 +76,8 @@
 
     span
       position: absolute
-      top: ds.rem(12)
-      left: ds.rem(12)
+      top: ds.rem(7)
+      right: ds.rem(23)
       font-size: ds.rem(12)
       color: ds.$hex-accent-light
 
@@ -85,9 +85,21 @@
         color: ds.$hex-accent-dark
 
     strong
+      display: block
+      overflow: auto
       font-family: var(--doto)
       font-weight: 700
       font-variation-settings: "wght" 700
+
+      &::-webkit-scrollbar
+        height: 4px
+
+      &::-webkit-scrollbar-thumb
+        background-color: rgba(0, 0, 0, 0.3)
+        border-radius: 2px
+
+      &::-webkit-scrollbar-track
+        background: transparent
 
   .group
     display: grid

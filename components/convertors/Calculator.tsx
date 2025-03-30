@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { sin, cos, tan, sinh, cosh, tanh, pi, e as E } from 'mathjs';
 import { evaluateExpression } from '@/lib/evaluate';
 import styles from '@/styles/Calculator.module.sass';
@@ -7,6 +7,7 @@ export default function Calculator() {
   const [input, setInput] = useState<string>('0');
   const [memory, setMemory] = useState<number>(0);
   const [angleMode, setAngleMode] = useState<'deg' | 'rad'>('deg');
+  const displayRef = useRef<HTMLSpanElement | null>(null);
 
   const handleButtonClick = (value: string) => {
     setInput((prev) => {
@@ -220,6 +221,12 @@ export default function Calculator() {
   const operatorButtons = ['÷', '×', '−', '+', '='];
   const renderButtons = [...scientificButtons, angleMode === 'deg' ? 'Rad' : 'Deg'];
 
+  useEffect(() => {
+    if (displayRef.current) {
+      displayRef.current.scrollLeft = displayRef.current.scrollWidth;
+    }
+  }, [input]);
+
   return (
     <section className={styles.calculator}>
       <div className={styles.module}>
@@ -230,7 +237,7 @@ export default function Calculator() {
         </div>
         <div className={styles.display} role="status" aria-live="polite" aria-atomic="true">
           {angleMode === 'rad' && <span>Rad</span>}
-          <strong>{input}</strong>
+          <strong ref={displayRef}>{input}</strong>
         </div>
         <div className={styles.calc}>
           <div className={`${styles.group} ${styles.scientific}`}>
