@@ -356,8 +356,6 @@ export default function Calculator() {
         <div
           className={styles.display}
           role="button"
-          aria-live="polite"
-          aria-atomic="true"
           onClick={() => {
             navigator.clipboard.writeText(input);
             alert('계산된 결과값이 클립보드에 저장되었습니다.');
@@ -368,7 +366,9 @@ export default function Calculator() {
               Rad
             </span>
           )}
-          <strong ref={displayRef}>{input}</strong>
+          <strong ref={displayRef} role="status" aria-live="polite" aria-atomic="true">
+            {input}
+          </strong>
         </div>
         <div className={styles.calc}>
           <div className={`${styles.group} ${styles.scientific}`}>
