@@ -181,7 +181,7 @@ export default function Calculator() {
       return handleBackspace();
     }
 
-    if (key === 'Enter' || key === '＝') return handleEvaluate();
+    if (key === 'Enter' || key === '=') return handleEvaluate();
 
     if (/^[0-9%()\.]$/.test(key)) return handleButtonClick(key);
 
