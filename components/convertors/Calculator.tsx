@@ -181,7 +181,7 @@ export default function Calculator() {
       return handleBackspace();
     }
 
-    if (key === 'Enter' || key === '=') return handleEvaluate();
+    if (key === 'Enter' || key === '＝') return handleEvaluate();
 
     if (/^[0-9%()\.]$/.test(key)) return handleButtonClick(key);
 
@@ -271,7 +271,7 @@ export default function Calculator() {
     '×': '곱하기',
     '−': '빼기',
     '+': '더하기',
-    '=': '동호',
+    '＝': '동호',
   };
 
   const handleBackspace = () => {
@@ -291,7 +291,7 @@ export default function Calculator() {
   };
 
   const baseButtons = ['AC', '⁺⁄₋', '%', '7', '8', '9', '4', '5', '6', '1', '2', '3', '⌫', '0', '.'];
-  const operatorButtons = ['÷', '×', '−', '+', '='];
+  const operatorButtons = ['÷', '×', '−', '+', '＝'];
   const renderButtons = [...scientificButtons, angleMode === 'deg' ? 'Rad' : 'Deg'];
 
   useEffect(() => {
@@ -319,7 +319,7 @@ export default function Calculator() {
               <dd>Backspace 키</dd>
             </div>
             <div>
-              <dt>=</dt>
+              <dt>＝</dt>
               <dd>= 또는 엔터(리턴) 키</dd>
             </div>
             <div>
@@ -343,7 +343,7 @@ export default function Calculator() {
               <dd>p 키</dd>
             </div>
             <div>
-              <dt>숫자, 점, +, -</dt>
+              <dt>숫자, 점, +, −</dt>
               <dd>그대로 사용</dd>
             </div>
           </dl>
@@ -426,7 +426,7 @@ export default function Calculator() {
                   <RippleButton
                     onClick={() => {
                       const symbol = btn === '−' ? '-' : btn;
-                      return symbol === '=' ? handleEvaluate() : handleButtonClick(symbol);
+                      return symbol === '＝' ? handleEvaluate() : handleButtonClick(symbol);
                     }}
                     aria-label={ariaLabelsOperator[btn] ?? btn}
                   >
