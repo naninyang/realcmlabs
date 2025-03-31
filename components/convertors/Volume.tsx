@@ -108,7 +108,7 @@ export default function VolumeConverter() {
           </div>
         </div>
         {(result || warning) && (
-          <div className={styles.result}>
+          <div className={styles.result} role="status" aria-live="polite" aria-atomic="true">
             {result && (
               <p>
                 <span>

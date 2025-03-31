@@ -179,7 +179,7 @@ export default function StorageConverter() {
           </div>
         </div>
         {(result || warning) && (
-          <div className={styles.result}>
+          <div className={styles.result} role="status" aria-live="polite" aria-atomic="true">
             {result && <p dangerouslySetInnerHTML={{ __html: result }}></p>}
             {warning && (
               <p className={styles.danger}>

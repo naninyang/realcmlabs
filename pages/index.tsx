@@ -199,7 +199,7 @@ export default function Home() {
         <div className={styles.module}>
           <p>
             <Info />
-            <span>
+            <span role="status" aria-live="polite" aria-atomic="true">
               사용자의 브라우저 크기는{' '}
               <strong>
                 {browserWidth} px  ×  {browserHeight} px
@@ -347,7 +347,7 @@ export default function Home() {
       </div>
 
       {calculated && (
-        <div className={styles.result}>
+        <div className={styles.result} role="status" aria-live="polite" aria-atomic="true">
           <div className={`container ${styles.container}`}>
             <h2>실제 길이</h2>
             {mode === 'multi' && (

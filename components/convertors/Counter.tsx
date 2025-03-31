@@ -169,7 +169,12 @@ export default function Counter() {
           </div>
         </div>
         {results.length > 0 && (
-          <div className={`${styles.result} ${styles['result-counter']}`}>
+          <div
+            className={`${styles.result} ${styles['result-counter']}`}
+            role="status"
+            aria-live="polite"
+            aria-atomic="true"
+          >
             <dl>
               {results.map((r, i) => (
                 <div key={i} dangerouslySetInnerHTML={{ __html: r }} />

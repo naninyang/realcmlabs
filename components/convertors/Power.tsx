@@ -169,7 +169,7 @@ export default function PowerCalculator() {
         </div>
 
         {isCalculated && (
-          <div className={styles.result}>
+          <div className={styles.result} role="status" aria-live="polite" aria-atomic="true">
             <dl>
               {calculatedPower && (
                 <div>

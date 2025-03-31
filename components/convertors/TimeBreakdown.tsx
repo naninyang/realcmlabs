@@ -145,6 +145,9 @@ export default function TimeBreakdown() {
         {(higherResults.length > 0 || lowerResults.length > 0) && (
           <div
             className={`${styles.result} ${isMobile ? styles._coffee : styles._latte} ${higherResults.length > 0 && lowerResults.length > 0 ? styles._both : ''}`}
+            role="status"
+            aria-live="polite"
+            aria-atomic="true"
           >
             {isMobile ? (
               <ul>
