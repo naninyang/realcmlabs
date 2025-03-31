@@ -429,6 +429,7 @@ export default function Calculator() {
                       return symbol === '＝' ? handleEvaluate() : handleButtonClick(symbol);
                     }}
                     aria-label={ariaLabelsOperator[btn] ?? btn}
+                    title={ariaLabelsOperator[btn] ?? btn}
                   >
                     {btn}
                   </RippleButton>
