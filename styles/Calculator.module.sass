@@ -189,12 +189,14 @@
 
   .button
     button
+      overflow: hidden
       width: 100%
       height: ds.rem(50)
       border-radius: ds.rem(25)
       font-family: var(--rbto)
       font-size: ds.rem(14)
       text-align: center
+      -webkit-tap-highlight-color: rgba(ds.$hex-black, 0)
 
       @include ds.mq(minMedium)
         height: ds.rem(53)

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { sin, cos, tan, sinh, cosh, tanh, pi, e as E } from 'mathjs';
 import { evaluateExpression } from '@/lib/evaluate';
+import RippleButton from '../RippleButton';
 import styles from '@/styles/Calculator.module.sass';
 
 export default function Calculator() {
@@ -373,7 +374,7 @@ export default function Calculator() {
           <div className={`${styles.group} ${styles.scientific}`}>
             {renderButtons.map((btn) => (
               <div className={styles.button} key={btn}>
-                <button
+                <RippleButton
                   onClick={() => {
                     if (btn === 'Rad') return setAngleMode('rad');
                     if (btn === 'Deg') return setAngleMode('deg');
@@ -388,11 +389,11 @@ export default function Calculator() {
                     return handleButtonClick(btn);
                   }}
                   className={`${styles.button} ${btn === '𝑒' || btn === '𝑒ˣ' || btn === '¹⁄ₓ' ? styles.symbol : ''}`}
-                  aria-label={ariaLabelsScientific[btn] ?? btn}
+                  ariaLabel={ariaLabelsScientific[btn] ?? btn}
                   title={ariaLabelsScientific[btn] ?? btn}
                 >
                   {btn}
-                </button>
+                </RippleButton>
               </div>
             ))}
           </div>
@@ -400,7 +401,7 @@ export default function Calculator() {
             <div className={styles.group}>
               {baseButtons.map((btn) => (
                 <div className={styles.button} key={btn}>
-                  <button
+                  <RippleButton
                     onClick={() =>
                       btn === 'AC'
                         ? handleClear()
@@ -415,14 +416,14 @@ export default function Calculator() {
                     title={ariaLabelsBase[btn] ?? btn}
                   >
                     {btn}
-                  </button>
+                  </RippleButton>
                 </div>
               ))}
             </div>
             <div className={styles.group}>
               {operatorButtons.map((btn) => (
                 <div className={`${styles.button} ${styles.operator}`} key={btn}>
-                  <button
+                  <RippleButton
                     onClick={() => {
                       const symbol = btn === '−' ? '-' : btn;
                       return symbol === '=' ? handleEvaluate() : handleButtonClick(symbol);
@@ -430,7 +431,7 @@ export default function Calculator() {
                     aria-label={ariaLabelsOperator[btn] ?? btn}
                   >
                     {btn}
-                  </button>
+                  </RippleButton>
                 </div>
               ))}
             </div>
