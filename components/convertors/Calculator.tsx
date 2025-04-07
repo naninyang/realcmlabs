@@ -356,6 +356,7 @@ export default function Calculator() {
         <div
           className={styles.display}
           role="button"
+          tabIndex={0}
           onClick={() => {
             navigator.clipboard.writeText(input);
             alert('계산된 결과값이 클립보드에 저장되었습니다.');
