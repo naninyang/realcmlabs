@@ -70,6 +70,14 @@ header.header
               path
                 fill: ds.$hex-accent-light
 
+            span
+              transition: all .4s cubic-bezier(.4,0,.2,1)
+              border-bottom: ds.rem(2) solid transparent
+
+            &:hover, &:focus
+              span
+                border-bottom-color: ds.$hex-accent-light
+
             body[data-theme='dark'] &
               color: ds.$hex-accent-dark
 
