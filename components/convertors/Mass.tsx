@@ -43,7 +43,8 @@ export default function MassConverter() {
   const [result, setResult] = useState('');
   const [warning, setWarning] = useState('');
 
-  const handleConvert = () => {
+  const handleConvert = (e: React.FormEvent) => {
+    e.preventDefault();
     const value = Number(inputValue);
     if (!inputValue.trim() || isNaN(value)) {
       setResult('');
@@ -77,8 +78,9 @@ export default function MassConverter() {
     <section className={styles.section}>
       <div className={styles.module}>
         <h2>질량 변환</h2>
-        <div className={styles.form}>
-          <div className={styles.fieldset}>
+        <form onSubmit={handleConvert}>
+          <fieldset>
+            <legend>질량변환 폼</legend>
             <div className={styles.group}>
               <input
                 type="text"
@@ -120,12 +122,12 @@ export default function MassConverter() {
               </strong>
             </div>
             <div className={styles.submit}>
-              <button type="button" onClick={handleConvert}>
+              <button type="submit">
                 <span>변환</span>
               </button>
             </div>
-          </div>
-        </div>
+          </fieldset>
+        </form>
         {(result || warning) && (
           <div className={styles.result} role="status" aria-live="polite" aria-atomic="true">
             {result && (

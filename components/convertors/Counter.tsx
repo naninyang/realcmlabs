@@ -126,7 +126,8 @@ export default function Counter() {
   const [input, setInput] = useState('');
   const [results, setResults] = useState<string[]>([]);
 
-  const handleClick = () => {
+  const handleConvert = (e: React.FormEvent) => {
+    e.preventDefault();
     const num = parseInt(input, 10);
     if (Number.isNaN(num) || num < 1 || num > 199) {
       setResults(['⚠️ 1부터 199 사이의 숫자만 입력해주세요.']);
@@ -149,8 +150,9 @@ export default function Counter() {
     <section className={`${styles.section} ${styles['section-full']}`}>
       <div className={styles.module}>
         <h2>숫자 세기</h2>
-        <div className={styles.form}>
-          <div className={styles.fieldset}>
+        <form onSubmit={handleConvert}>
+          <fieldset>
+            <legend>숫자세기 폼</legend>
             <div className={styles.group}>
               <input
                 type="number"
@@ -162,12 +164,12 @@ export default function Counter() {
               />
             </div>
             <div className={styles.submit}>
-              <button type="button" onClick={handleClick}>
+              <button type="submit">
                 <span>숫자 세기</span>
               </button>
             </div>
-          </div>
-        </div>
+          </fieldset>
+        </form>
         {results.length > 0 && (
           <div
             className={`${styles.result} ${styles['result-counter']}`}

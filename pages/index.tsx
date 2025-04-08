@@ -91,7 +91,8 @@ export default function Home() {
     setDiagonalUnit('in');
   };
 
-  const calculateSizes = () => {
+  const calculateSizes = (e: React.FormEvent) => {
+    e.preventDefault();
     const diagonalInches = convertSize(diagonalSize, diagonalUnit, 'in');
     const screenDiagonalPx = Math.sqrt(window.screen.width ** 2 + window.screen.height ** 2);
     const newDevicePPI = screenDiagonalPx / diagonalInches;
@@ -207,142 +208,150 @@ export default function Home() {
               입니다.
             </span>
           </p>
-          <div className={styles.form}>
-            <div className={styles.group}>
-              {ios ? (
-                <>
-                  <label htmlFor="real">디바이스 선택</label>
-                  <select id="device" onChange={(e) => handleDeviceSelect(e.target.value)}>
-                    <optgroup label="iPhone">
-                      <option value={5.4}>13 mini</option>
-                      <option value={6.1}>13 / 13 Pro</option>
-                      <option value={6.7}>13 Pro Max</option>
-                      <option value={6.1}>14 / 14 Pro</option>
-                      <option value={6.7}>14 Plus / 14 Pro Max</option>
-                      <option value={6.7}>15 Plus / 15 Pro Max</option>
-                      <option value={6.1}>15 / 15 Pro / 16</option>
-                      <option value={6.7}>16 Plus</option>
-                      <option value={6.3}>16 Pro</option>
-                      <option value={6.9}>16 Pro Max</option>
-                    </optgroup>
-                    <optgroup label="iPad">
-                      <option value={9.7}>9.7″ / Pro 9.7″</option>
-                      <option value={9.7}>Air / Air 2</option>
-                      <option value={8.3}>Mini 6</option>
-                      <option value={7.9}>Mini Series</option>
-                      <option value={12.9}>Pro 12.9″, Air 4</option>
-                      <option value={11}>Pro 11″</option>
-                      <option value={10.5}>Air 3 / Pro 10.5″</option>
-                      <option value={10.2}>10.2″ / 7</option>
-                    </optgroup>
-                  </select>
-                </>
-              ) : (
-                <>
-                  <label htmlFor="real">화면 대각선 길이</label>
-                  <input
-                    id="real"
-                    type="number"
-                    value={diagonalSize}
-                    onChange={(e) => setDiagonalSize(Number(e.target.value))}
-                  />
-                  <select value={diagonalUnit} onChange={(e) => setDiagonalUnit(e.target.value as Unit)}>
-                    <option value="in">in</option>
-                    <option value="cm">cm</option>
-                    <option value="mm">mm</option>
-                  </select>
-                </>
-              )}
-            </div>
-            {!ios && <p>화면 대각선 길이는 화면 크기가 몇인지를 입력하시면 됩니다.</p>}
-            <div className={styles.radio}>
-              <div className={styles.checkbox}>
-                <input
-                  type="radio"
-                  id="single"
-                  checked={mode === 'single'}
-                  onChange={() => handleModeChange('single')}
-                />
-                {mode === 'single' ? (
-                  <div className={styles.checked}>
-                    <Checked />
-                  </div>
+          <form onSubmit={calculateSizes}>
+            <fieldset>
+              <legend>사이즈 계산 폼</legend>
+              <div className={styles.group}>
+                {ios ? (
+                  <>
+                    <label htmlFor="real">디바이스 선택</label>
+                    <select id="device" onChange={(e) => handleDeviceSelect(e.target.value)}>
+                      <optgroup label="iPhone">
+                        <option value={5.4}>13 mini</option>
+                        <option value={6.1}>13 / 13 Pro</option>
+                        <option value={6.7}>13 Pro Max</option>
+                        <option value={6.1}>14 / 14 Pro</option>
+                        <option value={6.7}>14 Plus / 14 Pro Max</option>
+                        <option value={6.7}>15 Plus / 15 Pro Max</option>
+                        <option value={6.1}>15 / 15 Pro / 16</option>
+                        <option value={6.7}>16 Plus</option>
+                        <option value={6.3}>16 Pro</option>
+                        <option value={6.9}>16 Pro Max</option>
+                      </optgroup>
+                      <optgroup label="iPad">
+                        <option value={9.7}>9.7″ / Pro 9.7″</option>
+                        <option value={9.7}>Air / Air 2</option>
+                        <option value={8.3}>Mini 6</option>
+                        <option value={7.9}>Mini Series</option>
+                        <option value={12.9}>Pro 12.9″, Air 4</option>
+                        <option value={11}>Pro 11″</option>
+                        <option value={10.5}>Air 3 / Pro 10.5″</option>
+                        <option value={10.2}>10.2″ / 7</option>
+                      </optgroup>
+                    </select>
+                  </>
                 ) : (
-                  <div className={styles.unchecked}>
-                    <Unchecked />
-                  </div>
+                  <>
+                    <label htmlFor="real">화면 대각선 길이</label>
+                    <input
+                      id="real"
+                      type="number"
+                      value={diagonalSize}
+                      onChange={(e) => setDiagonalSize(Number(e.target.value))}
+                    />
+                    <select value={diagonalUnit} onChange={(e) => setDiagonalUnit(e.target.value as Unit)}>
+                      <option value="in">in</option>
+                      <option value="cm">cm</option>
+                      <option value="mm">mm</option>
+                    </select>
+                  </>
                 )}
-                <label htmlFor="single">단일</label>
               </div>
-              <div className={styles.checkbox}>
-                <input type="radio" id="multi" checked={mode === 'multi'} onChange={() => handleModeChange('multi')} />
-                {mode === 'multi' ? (
-                  <div className={styles.checked}>
-                    <Checked />
-                  </div>
-                ) : (
-                  <div className={styles.unchecked}>
-                    <Unchecked />
-                  </div>
-                )}
-                <label htmlFor="multi">가로폭/세로폭</label>
-              </div>
-            </div>
-            <div className={styles.groups}>
-              {mode === 'single' ? (
-                <div className={styles.group}>
-                  <label htmlFor="line">알고 싶은 길이</label>
+              {!ios && <p>화면 대각선 길이는 화면 크기가 몇인지를 입력하시면 됩니다.</p>}
+              <div className={styles.radio}>
+                <div className={styles.checkbox}>
                   <input
-                    id="line"
-                    type="number"
-                    value={singleLength}
-                    onChange={(e) => setSingleLength(Number(e.target.value))}
+                    type="radio"
+                    id="single"
+                    checked={mode === 'single'}
+                    onChange={() => handleModeChange('single')}
                   />
-                  <select value={singleUnit} onChange={(e) => setSingleUnit(e.target.value as Unit)}>
-                    <option value="mm">mm</option>
-                    <option value="cm">cm</option>
-                    <option value="in">in</option>
-                  </select>
+                  {mode === 'single' ? (
+                    <div className={styles.checked}>
+                      <Checked />
+                    </div>
+                  ) : (
+                    <div className={styles.unchecked}>
+                      <Unchecked />
+                    </div>
+                  )}
+                  <label htmlFor="single">단일</label>
                 </div>
-              ) : (
-                <>
+                <div className={styles.checkbox}>
+                  <input
+                    type="radio"
+                    id="multi"
+                    checked={mode === 'multi'}
+                    onChange={() => handleModeChange('multi')}
+                  />
+                  {mode === 'multi' ? (
+                    <div className={styles.checked}>
+                      <Checked />
+                    </div>
+                  ) : (
+                    <div className={styles.unchecked}>
+                      <Unchecked />
+                    </div>
+                  )}
+                  <label htmlFor="multi">가로폭/세로폭</label>
+                </div>
+              </div>
+              <div className={styles.groups}>
+                {mode === 'single' ? (
                   <div className={styles.group}>
-                    <label htmlFor="horizontal">알고 싶은 가로폭</label>
+                    <label htmlFor="line">알고 싶은 길이</label>
                     <input
-                      id="horizontal"
+                      id="line"
                       type="number"
-                      value={width}
-                      onChange={(e) => setWidth(Number(e.target.value))}
+                      value={singleLength}
+                      onChange={(e) => setSingleLength(Number(e.target.value))}
                     />
-                    <select value={unit} onChange={(e) => setUnit(e.target.value as Unit)}>
+                    <select value={singleUnit} onChange={(e) => setSingleUnit(e.target.value as Unit)}>
                       <option value="mm">mm</option>
                       <option value="cm">cm</option>
                       <option value="in">in</option>
                     </select>
                   </div>
-                  <div className={styles.group}>
-                    <label htmlFor="vertical">알고 싶은 세로폭</label>
-                    <input
-                      id="vertical"
-                      type="number"
-                      value={height}
-                      onChange={(e) => setHeight(Number(e.target.value))}
-                    />
-                    <select value={unit} onChange={(e) => setUnit(e.target.value as Unit)}>
-                      <option value="mm">mm</option>
-                      <option value="cm">cm</option>
-                      <option value="in">in</option>
-                    </select>
-                  </div>
-                </>
-              )}
-            </div>
-            <div className={styles.submit}>
-              <button type="button" onClick={calculateSizes}>
-                <span>계산하기</span>
-              </button>
-            </div>
-          </div>
+                ) : (
+                  <>
+                    <div className={styles.group}>
+                      <label htmlFor="horizontal">알고 싶은 가로폭</label>
+                      <input
+                        id="horizontal"
+                        type="number"
+                        value={width}
+                        onChange={(e) => setWidth(Number(e.target.value))}
+                      />
+                      <select value={unit} onChange={(e) => setUnit(e.target.value as Unit)}>
+                        <option value="mm">mm</option>
+                        <option value="cm">cm</option>
+                        <option value="in">in</option>
+                      </select>
+                    </div>
+                    <div className={styles.group}>
+                      <label htmlFor="vertical">알고 싶은 세로폭</label>
+                      <input
+                        id="vertical"
+                        type="number"
+                        value={height}
+                        onChange={(e) => setHeight(Number(e.target.value))}
+                      />
+                      <select value={unit} onChange={(e) => setUnit(e.target.value as Unit)}>
+                        <option value="mm">mm</option>
+                        <option value="cm">cm</option>
+                        <option value="in">in</option>
+                      </select>
+                    </div>
+                  </>
+                )}
+              </div>
+              <div className={styles.submit}>
+                <button type="submit">
+                  <span>계산하기</span>
+                </button>
+              </div>
+            </fieldset>
+          </form>
         </div>
       </div>
 

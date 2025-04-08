@@ -71,7 +71,8 @@ export default function TimeBreakdown() {
   const [lowerResults, setLowerResults] = useState<string[]>([]);
   const isMobile = useMobile();
 
-  const handleConvert = () => {
+  const handleConvert = (e: React.FormEvent) => {
+    e.preventDefault();
     const num = Number(value);
     if (isNaN(num) || num <= 0) return;
 
@@ -117,8 +118,9 @@ export default function TimeBreakdown() {
     <section className={`${styles.section} ${styles['section-full']}`}>
       <div className={styles.module}>
         <h2>시간 계산기</h2>
-        <div className={styles.form}>
-          <div className={styles.fieldset}>
+        <form onSubmit={handleConvert}>
+          <fieldset>
+            <legend>시간계산 폼</legend>
             <div className={styles.group}>
               <input
                 type="number"
@@ -136,12 +138,12 @@ export default function TimeBreakdown() {
               </select>
             </div>
             <div className={styles.submit}>
-              <button type="button" onClick={handleConvert}>
+              <button type="submit">
                 <span>계산</span>
               </button>
             </div>
-          </div>
-        </div>
+          </fieldset>
+        </form>
         {(higherResults.length > 0 || lowerResults.length > 0) && (
           <div
             className={`${styles.result} ${isMobile ? styles._coffee : styles._latte} ${higherResults.length > 0 && lowerResults.length > 0 ? styles._both : ''}`}

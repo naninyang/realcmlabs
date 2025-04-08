@@ -258,9 +258,10 @@
         body[data-theme='dark'] &
           color: ds.$hex-accent-dark
 
-    .form
-      display: flex
-      flex-direction: column
+    form
+      fieldset
+        display: flex
+        flex-direction: column
 
       .radio
         display: flex
@@ -402,7 +403,7 @@
               background: radial-gradient(circle, ds.$hex-accent-dark 0%, ds.$hex-dark 100%)
 
           &:hover,
-          &:focus
+          &:focus-visible
             border-color: ds.$hex-accent-light
             color: ds.$hex-white
 
@@ -411,7 +412,7 @@
               color: ds.$hex-black
 
           &:hover::before,
-          &:focus::before
+          &:focus-visible::before
             transform: translate(-50%, -50%) scale(1)
 
           span

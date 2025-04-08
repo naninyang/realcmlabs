@@ -24,7 +24,8 @@ export default function TemperatureConverter() {
   const [result, setResult] = useState('');
   const [warning, setWarning] = useState('');
 
-  const handleConvert = () => {
+  const handleConvert = (e: React.FormEvent) => {
+    e.preventDefault();
     const value = Number(inputValue);
     if (!inputValue.trim() || isNaN(value)) {
       setResult('');
@@ -44,8 +45,9 @@ export default function TemperatureConverter() {
     <section className={styles.section}>
       <div className={styles.module}>
         <h2>온도 변환</h2>
-        <div className={styles.form}>
-          <div className={styles.fieldset}>
+        <form onSubmit={handleConvert}>
+          <fieldset>
+            <legend>온도변환 폼</legend>
             <div className={styles.group}>
               <input
                 type="text"
@@ -79,12 +81,12 @@ export default function TemperatureConverter() {
               </strong>
             </div>
             <div className={styles.submit}>
-              <button type="button" onClick={handleConvert}>
+              <button type="submit">
                 <span>변환</span>
               </button>
             </div>
-          </div>
-        </div>
+          </fieldset>
+        </form>
         {(result || warning) && (
           <div className={styles.result} role="status" aria-live="polite" aria-atomic="true">
             {result && (

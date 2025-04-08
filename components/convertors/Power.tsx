@@ -37,7 +37,8 @@ export default function PowerCalculator() {
     alert('3개의 항목 중 2개의 항목만 선택하실 수 있습니다.');
   };
 
-  const handleCalculation = () => {
+  const handleConvert = (e: React.FormEvent) => {
+    e.preventDefault();
     const V = voltageChecked ? parseFloat(voltage) || null : null;
     const A = currentChecked ? parseFloat(current) || null : null;
     const W = powerChecked ? parseFloat(power) || null : null;
@@ -69,8 +70,9 @@ export default function PowerCalculator() {
     <section className={`${styles.section} ${styles['section-full']}`}>
       <div className={styles.module}>
         <h2>충전기 계산기</h2>
-        <div className={styles.form}>
-          <div className={styles.fieldset}>
+        <form onSubmit={handleConvert}>
+          <fieldset>
+            <legend>충전기 계산 폼</legend>
             <div className={styles.groups}>
               <div className={styles.group}>
                 <div className={`${styles.checkbox} ${disableVoltage ? styles.disabled : ''}`}>
@@ -161,12 +163,12 @@ export default function PowerCalculator() {
               </div>
             </div>
             <div className={styles.submit}>
-              <button type="button" onClick={handleCalculation}>
+              <button type="submit">
                 <span>계산</span>
               </button>
             </div>
-          </div>
-        </div>
+          </fieldset>
+        </form>
 
         {isCalculated && (
           <div className={styles.result} role="status" aria-live="polite" aria-atomic="true">
