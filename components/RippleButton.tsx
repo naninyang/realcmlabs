@@ -8,9 +8,10 @@ type Props = {
   className?: string;
   ariaLabel?: string;
   title?: string;
+  type: 'button' | 'submit' | 'reset';
 };
 
-export default function RippleButton({ children, onClick, className = '', ariaLabel, title }: Props) {
+export default function RippleButton({ children, onClick, className = '', ariaLabel, title, type }: Props) {
   const [ios, setIos] = useState<boolean>();
   const [android, seAndroid] = useState<boolean>();
   const [monitor, setMonitor] = useState<boolean>();
@@ -54,6 +55,7 @@ export default function RippleButton({ children, onClick, className = '', ariaLa
       className={`${ios ? styles.btn : ''} ${android ? styles.rb : ''} ${monitor ? styles.general : ''} ${className}`}
       aria-label={ariaLabel}
       title={title}
+      type={type}
     >
       {children}
     </button>

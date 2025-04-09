@@ -399,6 +399,7 @@ export default function Calculator() {
                   className={`${styles.button} ${btn === '𝑒' || btn === '𝑒ˣ' || btn === '¹⁄ₓ' ? styles.symbol : ''}`}
                   ariaLabel={ariaLabelsScientific[btn] ?? btn}
                   title={ariaLabelsScientific[btn] ?? btn}
+                  type={'button'}
                 >
                   {btn}
                 </RippleButton>
@@ -422,6 +423,7 @@ export default function Calculator() {
                     className={`${styles.button} ${btn === '⌫' ? styles.backspace : ''}`}
                     aria-label={ariaLabelsBase[btn] ?? btn}
                     title={ariaLabelsBase[btn] ?? btn}
+                    type={'button'}
                   >
                     {btn}
                   </RippleButton>
@@ -438,6 +440,7 @@ export default function Calculator() {
                     }}
                     aria-label={ariaLabelsOperator[btn] ?? btn}
                     title={ariaLabelsOperator[btn] ?? btn}
+                    type={'button'}
                   >
                     {btn}
                   </RippleButton>
