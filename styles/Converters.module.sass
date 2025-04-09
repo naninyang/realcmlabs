@@ -219,6 +219,10 @@ section.section
         align-items: center
         width: ds.rem(24)
         height: ds.rem(24)
+        background-color: ds.$hex-white
+
+        body[data-theme='dark'] &
+          background-color: ds.$hex-dark
 
         &.checked
           svg
@@ -237,7 +241,10 @@ section.section
                 fill: ds.$hex-gray-dark
 
       input
-        @include ds.screen-reader-only
+        @include ds.hidden-box
+        margin: 0
+        width: ds.rem(24)
+        height: ds.rem(24)
 
       label
         display: inline-block
