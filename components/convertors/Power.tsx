@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Checked, Unchecked } from '../Svgs';
+import RippleButton from '../RippleButton';
 import styles from '@/styles/Converters.module.sass';
 
 export default function PowerCalculator() {
@@ -163,9 +164,7 @@ export default function PowerCalculator() {
               </div>
             </div>
             <div className={styles.submit}>
-              <button type="submit">
-                <span>계산</span>
-              </button>
+              <RippleButton type="submit">계산</RippleButton>
             </div>
           </fieldset>
         </form>

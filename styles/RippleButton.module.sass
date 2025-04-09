@@ -1,9 +1,15 @@
+.btn, .rb, .general
+  overflow: hidden
+
 .btn, .rb
   position: relative
 
   span
     position: absolute
     background-color: rgba(ds.$hex-black, 0.2)
+
+    body[data-theme='dark'] &
+      background-color: rgba(ds.$hex-white, 0.2)
 
 .btn
   span
@@ -24,11 +30,11 @@
 
   &:hover, &:focus-visible
     background-color: ds.$hex-accent-light!important
-    color: ds.$hex-white
+    color: ds.$hex-white!important
 
     body[data-theme='dark'] &
       background-color: ds.$hex-accent-dark!important
-      color: ds.$hex-black
+      color: ds.$hex-black!important
 
 @keyframes btn
   0%

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { Bullet } from '../Svgs';
 import Anchor from '../Anchor';
+import RippleButton from '../RippleButton';
 import styles from '@/styles/Converters.module.sass';
 
 type Unit = '초' | '분' | '시간' | '일' | '주' | '개월' | '년';
@@ -138,9 +139,7 @@ export default function TimeBreakdown() {
               </select>
             </div>
             <div className={styles.submit}>
-              <button type="submit">
-                <span>계산</span>
-              </button>
+              <RippleButton type="submit">계산</RippleButton>
             </div>
           </fieldset>
         </form>

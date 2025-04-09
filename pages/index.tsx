@@ -3,6 +3,7 @@ import { isIOS, isAndroid } from 'react-device-detect';
 import Seo from '@/components/Seo';
 import Anchor from '@/components/Anchor';
 import { Checked, ErrorIcon, Info, Unchecked } from '@/components/Svgs';
+import RippleButton from '@/components/RippleButton';
 import styles from '@/styles/Home.module.sass';
 
 type Unit = 'cm' | 'mm' | 'in';
@@ -346,9 +347,7 @@ export default function Home() {
                 )}
               </div>
               <div className={styles.submit}>
-                <button type="submit">
-                  <span>계산하기</span>
-                </button>
+                <RippleButton type="submit">계산하기</RippleButton>
               </div>
             </fieldset>
           </form>

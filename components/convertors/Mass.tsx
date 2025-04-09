@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { ErrorIcon, RightArrow } from '../Svgs';
+import RippleButton from '../RippleButton';
 import styles from '@/styles/Converters.module.sass';
 
 const unitGroups = {
@@ -122,9 +123,7 @@ export default function MassConverter() {
               </strong>
             </div>
             <div className={styles.submit}>
-              <button type="submit">
-                <span>변환</span>
-              </button>
+              <RippleButton type="submit">변환</RippleButton>
             </div>
           </fieldset>
         </form>

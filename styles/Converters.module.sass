@@ -163,14 +163,18 @@ section.section
       border-bottom: ds.rem(2) solid ds.$hex-gray-light
       border-radius: 0
       padding: 0
+      transition: all .4s cubic-bezier(.4,0,.2,1)
 
       &:focus, &:focus-visible
         outline: 0
         border-bottom: ds.rem(5) solid ds.$hex-accent-light
         color: ds.$hex-accent-light
 
-        body[data-theme='dark'] &
-          bottom-bottom-color: ds.$hex-accent-dark
+      body[data-theme='dark'] &
+        bottom-bottom-color: ds.$hex-accent-dark
+
+        &:focus, &:focus-visible
+          border-bottom-color: ds.$hex-accent-dark
           color: ds.$hex-accent-dark
 
     .value
@@ -270,10 +274,7 @@ section.section
       width: 100%
 
       button
-        transition: background 0.3s ease-in-out, transform 0.2s
-        position: relative
-        overflow: hidden
-        background-color: ds.$hex-white
+        background-color: transparent
         border: ds.rem(2) solid
         border-radius: ds.rem(3)
         width: 100%
@@ -282,41 +283,7 @@ section.section
         @include ds.fw(500)
         color: ds.$hex-accent-light
 
-        &::before
-          content: ''
-          position: absolute
-          top: 50%
-          left: 50%
-          width: 300%
-          height: 300%
-          background: radial-gradient(circle, ds.$hex-accent-light 0%, ds.$hex-white 100%)
-          transition: transform 0.3s ease-in-out
-          transform: translate(-50%, -50%) scale(0)
-          z-index: 0
-
-          body[data-theme='dark'] &
-            background: radial-gradient(circle, ds.$hex-accent-dark 0%, ds.$hex-dark 100%)
-
-        &:hover,
-        &:focus
-          border-color: ds.$hex-accent-light
-          color: ds.$hex-white
-
-          body[data-theme='dark'] &
-            border-color: ds.$hex-accent-dark
-            color: ds.$hex-black
-
-        &:hover::before,
-        &:focus::before
-          transform: translate(-50%, -50%) scale(1)
-
-        span
-          position: relative
-          z-index: 1
-          font-size: ds.rem(16)
-
         body[data-theme='dark'] &
-          background-color: ds.$hex-dark
           color: ds.$hex-accent-dark
 
   .announcement

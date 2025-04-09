@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import RippleButton from '../RippleButton';
 import styles from '@/styles/Converters.module.sass';
 
 const nativeUnits = ['', '하나', '둘', '셋', '넷', '다섯', '여섯', '일곱', '여덟', '아홉'];
@@ -164,9 +165,7 @@ export default function Counter() {
               />
             </div>
             <div className={styles.submit}>
-              <button type="submit">
-                <span>숫자 세기</span>
-              </button>
+              <RippleButton type="submit">숫자 세기</RippleButton>
             </div>
           </fieldset>
         </form>
