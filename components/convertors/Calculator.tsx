@@ -359,7 +359,14 @@ export default function Calculator() {
           tabIndex={0}
           onClick={() => {
             navigator.clipboard.writeText(input);
-            alert('계산된 결과값이 클립보드에 저장되었습니다.');
+            alert(`계산된 결과값이 클립보드에 저장되었습니다.\n저장된 값: ${input}`);
+          }}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              navigator.clipboard.writeText(input);
+              alert(`계산된 결과값이 클립보드에 저장되었습니다.\n저장된 값: ${input}`);
+            }
           }}
         >
           {angleMode === 'rad' && (
