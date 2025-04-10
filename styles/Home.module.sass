@@ -124,10 +124,12 @@
 
   .outter
     display: flex
-    justify-content: center
     overflow: hidden
     position: relative
-    padding: ds.rem(27) 0 ds.rem(93)
+    padding: ds.rem(27) ds.rem(24) ds.rem(93)
+
+    @include ds.mq(minSmall)
+      justify-content: center
 
   .realbox, .realline
     background-color: rgba(ds.$hex-dark, .2)
@@ -139,8 +141,11 @@
 
     span
       @include ds.fw(900)
-      font-size: ds.rem(23)
+      font-size: ds.rem(16)
       user-select: none
+
+      @include ds.mq(minSmall)
+        font-size: ds.rem(23)
 
     .warning
       display: flex
@@ -196,11 +201,14 @@
 
       .guide
         top: 0
-        left: calc(50% + ds.rem(23))
+        left: ds.rem(53)
         display: flex
         align-items: center
         padding: ds.rem(27) 0 ds.rem(93)
         height: 100%
+
+        @include ds.mq(minSmall)
+          left: calc(50% + ds.rem(23))
 
       .warning
         bottom: 0
