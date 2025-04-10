@@ -74,7 +74,7 @@ header.header
               transition: all .4s cubic-bezier(.4,0,.2,1)
               border-bottom: ds.rem(2) solid transparent
 
-            &:hover, &:focus
+            &:hover, &:focus-visible
               span
                 border-bottom-color: ds.$hex-accent-light
 
@@ -84,6 +84,10 @@ header.header
               svg
                 path
                   fill: ds.$hex-accent-dark
+
+              &:hover, &:focus-visible
+                span
+                  border-bottom-color: ds.$hex-accent-dark
 
     svg
       & + span:not(.link)

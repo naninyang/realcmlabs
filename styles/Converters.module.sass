@@ -215,15 +215,14 @@ section.section
             @include ds.screen-reader-only
 
       > div
+        background-color: ds.$hex-white
         display: flex
         position: absolute
-        top: 0
-        left: 0
         justify-content: center
         align-items: center
         width: ds.rem(24)
         height: ds.rem(24)
-        background-color: ds.$hex-white
+        border-radius: ds.rem(14)
 
         body[data-theme='dark'] &
           background-color: ds.$hex-dark
@@ -249,11 +248,13 @@ section.section
         margin: 0
         width: ds.rem(24)
         height: ds.rem(24)
+        appearance: none
+        border-radius: ds.rem(14)
 
       label
         display: inline-block
         position: relative
-        padding-left: ds.rem(25)
+        padding-left: ds.rem(27)
         height: auto
         font-size: ds.rem(16)
         font-weight: 700
