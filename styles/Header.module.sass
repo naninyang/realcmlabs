@@ -51,6 +51,12 @@ header.header
                 body[data-theme='dark'] &
                   color: rgba(ds.$hex-gray-dark, .5)
 
+          &.current
+            a
+              span
+                color: ds.$hex-accent-light
+                border-bottom-color: ds.$hex-accent-light
+
           a
             display: flex
             align-items: center
@@ -58,7 +64,6 @@ header.header
             padding: ds.rem(3) 0
             @include ds.fw(500)
             font-size: ds.rem(14)
-            color: ds.$hex-accent-light
 
             @include ds.mq(minSmall)
               padding: 0 ds.rem(7)
@@ -71,22 +76,25 @@ header.header
                 fill: ds.$hex-accent-light
 
             span
+              border-bottom-width: ds.rem(2)
+              border-bottom-style: solid
+              border-bottom-color: transparent
+              color: ds.$hex-dark
               transition: all .4s cubic-bezier(.4,0,.2,1)
-              border-bottom: ds.rem(2) solid transparent
 
             &:hover, &:focus-visible
               span
                 border-bottom-color: ds.$hex-accent-light
+                color: ds.$hex-accent-light
 
             body[data-theme='dark'] &
-              color: ds.$hex-accent-dark
-
               svg
                 path
                   fill: ds.$hex-accent-dark
 
               &:hover, &:focus-visible
                 span
+                  color: ds.$hex-accent-dark
                   border-bottom-color: ds.$hex-accent-dark
 
     svg

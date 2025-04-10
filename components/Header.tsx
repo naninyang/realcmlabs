@@ -1,9 +1,11 @@
 import Anchor from './Anchor';
+import { useRouter } from 'next/router';
 import { useTheme } from './context/ThemeContext';
 import { LogoDark, LogoLight, ModeDark, ModeLight, Outlink } from './Svgs';
 import styles from '@/styles/Header.module.sass';
 
 export default function Header() {
+  const router = useRouter();
   const { isDarkMode, toggleTheme } = useTheme();
 
   return (
@@ -17,7 +19,10 @@ export default function Header() {
             </Anchor>
           </h1>
           <ol>
-            <li>
+            <li
+              className={router.asPath === `/converters` ? styles.current : ''}
+              aria-current={router.asPath === `/converters` ? 'page' : false}
+            >
               <Anchor href="/converters">
                 <span className={styles.link}>단위 컨버터/계산기</span>
               </Anchor>
