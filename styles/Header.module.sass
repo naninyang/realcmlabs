@@ -57,6 +57,10 @@ header.header
                 color: ds.$hex-accent-light
                 border-bottom-color: ds.$hex-accent-light
 
+                body[data-theme='dark'] &
+                  color: ds.$hex-accent-dark
+                  border-bottom-color: ds.$hex-accent-dark
+
           a
             display: flex
             align-items: center
@@ -91,6 +95,9 @@ header.header
               svg
                 path
                   fill: ds.$hex-accent-dark
+
+              span
+                color: ds.$hex-white
 
               &:hover, &:focus-visible
                 span
