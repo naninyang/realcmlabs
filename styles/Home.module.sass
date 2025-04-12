@@ -132,12 +132,15 @@
       justify-content: center
 
   .realbox, .realline
-    background-color: rgba(ds.$hex-dark, .2)
+    background-color: rgba(ds.$hex-accent-light, .7)
     display: flex
     flex-direction: column
     justify-content: center
     align-items: center
     max-height: 100vh
+
+    body[data-theme='dark'] &
+      background-color: rgba(ds.$hex-accent-dark, .7)
 
     span
       @include ds.fw(900)
@@ -179,10 +182,10 @@
       height: ds.rem(10)
 
       &.overflow
-        background: linear-gradient(90deg, rgba(ds.$hex-dark, 0.2) 0%, rgba(ds.$hex-dark, 0.2) 70%, rgba(ds.$hex-dark, 0) 100%)
+        background: linear-gradient(90deg, rgba(ds.$hex-accent-light, 0.7) 0%, rgba(ds.$hex-accent-light, 0.7) 70%, rgba(ds.$hex-accent-light, 0) 100%)
 
         body[data-theme='dark'] &
-          background: linear-gradient(90deg, rgba(ds.$hex-light, 0.2) 0%, rgba(ds.$hex-light, 0.2) 70%, rgba(ds.$hex-light, 0) 100%)
+          background: linear-gradient(90deg, rgba(ds.$hex-accent-dark, 0.7) 0%, rgba(ds.$hex-accent-dark, 0.7) 70%, rgba(ds.$hex-accent-dark, 0) 100%)
 
       .guide
         top: ds.rem(43)
@@ -194,10 +197,10 @@
       width: ds.rem(10)
 
       &.overflow
-        background: linear-gradient(180deg, rgba(ds.$hex-dark, 0.2) 0%, rgba(ds.$hex-dark, 0.2) 70%, rgba(ds.$hex-dark, 0) 100%)
+        background: linear-gradient(180deg, rgba(ds.$hex-accent-light, 0.7) 0%, rgba(ds.$hex-accent-light, 0.7) 70%, rgba(ds.$hex-accent-light, 0) 100%)
 
         body[data-theme='dark'] &
-          background: linear-gradient(180deg, rgba(ds.$hex-light, 0.2) 0%, rgba(ds.$hex-light, 0.2) 70%, rgba(ds.$hex-light, 0) 100%)
+          background: linear-gradient(180deg, rgba(ds.$hex-accent-dark, 0.7) 0%, rgba(ds.$hex-accent-dark, 0.7) 70%, rgba(ds.$hex-accent-dark, 0) 100%)
 
       .guide
         top: 0
